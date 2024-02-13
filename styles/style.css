@@ -8,12 +8,13 @@ body {
   width: 100%;
   display: flex;
   gap: 2%;
+  background-color: #e4e6eb;
 }
 
 .skills-summary,
 .main-content,
 .navigation-container {
-  border: 2px solid blueviolet;
+  /* border: 2px solid blueviolet; */
   background-color: white;
   height: fit-content;
 }
@@ -57,10 +58,12 @@ body {
 #desc {
   font-size: 0.7rem;
   background-color: #ffb400;
+  padding: 0 0.2rem;
 }
 #desc1 {
   font-size: 0.7rem;
   text-align: right;
+  padding: 0 0.2rem;
 }
 
 .languages {
