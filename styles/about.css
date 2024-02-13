@@ -1,0 +1,41 @@
+#about {
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+}
+
+.aboutcont {
+  display: flex;
+  width: 100%;
+}
+
+.aboutpic {
+  width: 50%;
+  height: 100%;
+}
+.aboutpic img {
+  width: 90%;
+  padding: 1rem;
+  border-radius: 2rem;
+}
+
+.aboutdesc {
+  width: 50%;
+  padding: 1rem;
+}
+.aboutdesc p {
+  width: 100%;
+  text-align: start;
+  font-size: 0.8rem;
+  color: #767676;
+}
+
+#contctmeBtn {
+  background: #ffb400;
+  padding: 0.9rem 3rem;
+  border: none !important;
+  border-radius: 0.1rem !important;
+  justify-content: start;
+}

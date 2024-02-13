@@ -23,7 +23,7 @@ body {
   width: 25%;
   display: flex;
   flex-direction: column;
-  margin: auto;
+  /* margin: auto; */
   justify-content: center;
   align-items: center;
   gap: 1rem;
@@ -163,7 +163,6 @@ progress::-moz-progress-bar {
   display: flex;
   flex-direction: column;
   text-align: left;
-  /* background-color: red; */
   font-size: 0.8rem;
   color: #767676;
   width: 60%;
@@ -197,8 +196,69 @@ progress::-moz-progress-bar {
 .navigation-container {
   width: 10%;
   min-height: 100vh;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   display: flex;
   flex-direction: column;
+}
+
+#firstTitle {
+  font-size: 2rem;
+}
+#menu {
+  display: none;
+}
+.skills-summary.show-skills-summary {
+  display: flex;
+}
+
+/* responsiveness */
+
+@media (min-width: 360px) and (max-width: 800px) {
+  .skills-summary {
+    display: none;
+  }
+
+  .skills-summary.show-skills-summary {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    position: absolute;
+  }
+  .main-content {
+    width: 85%;
+  }
+  #hireme {
+    padding: 1rem 0;
+    width: 100%;
+  }
+  .homeCont {
+    display: flex;
+    flex-direction: column-reverse;
+    height: fit-content;
+  }
+  .homeDesc {
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #767676;
+    width: 90%;
+  }
+  .homeImg {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+  #firstTitle {
+    font-size: 1.5rem;
+  }
+  #menu {
+    display: flex;
+  }
 }

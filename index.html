@@ -3,7 +3,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Digital world</title>
-    <link rel="stylesheet" href="../styles/style.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       rel="stylesheet"
@@ -30,6 +29,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
+    <link rel="stylesheet" href="../styles/style.css" />
+     <link rel="stylesheet" href="./styles/about.css">
+     <link rel="stylesheet" href="./styles/services.css">
   </head>
   <body>
     <div class="landing-container">
@@ -174,7 +176,7 @@
        <section id="home">    
         <div class="homeCont">
             <div class="homeDesc">
-                <h1 style="color: black; font-size: 2rem;">I’m Yvette Izanyibuka <br>
+                <h1 style="color: black; " id="firstTitle">I’m Yvette Izanyibuka <br>
                 <span style="color: #ffb400;">FullStack</span> Developer </h1>
                 <p id="welcome">
                     Welcome to my digital space! I'm Yvette, 
@@ -194,10 +196,67 @@
 
 
        </section>
+
+       <section id="about">
+        <h1>About
+        </h1>
+        <div class="aboutcont">
+            <div class="aboutpic">
+                <img src="./images/me1.jpg" alt="">
+
+            </div>
+            <div class="aboutdesc">
+                                <h2>So, who I’m I ?</h2>
+               <p> I am Yvette IZANYIBUKA, a devoted software developer committed to 
+                a lifelong journey of continuous learning and professional growth. 
+                With an unwavering dedication to customer prioritization, I consistently 
+                strive to understand and exceed their expectations. My approach to 
+                efficiency is not just about writing efficient code; it extends to 
+                every aspect of my work, from project planning to execution. 
+                I believe that through a combination of continuous learning, 
+                customer-focused solutions, and efficient practices, we can create 
+                software that not only meets but exceeds expectations, delivering 
+                meaningful and impactful experiences for end-users.</p>
+            <button id="contctmeBtn">Contact Me</button>
+
+            </div>
+        </div>
+       </section>
+
+       <section id="myservices">
+        <div class="servicescont">
+            <h1>My Services</h1>
+            <p> Embark on a transformative journey with our comprehensive 
+                suite of services designed to meet your unique needs. 
+                From custom software development to innovative solutions,
+                 we take pride in delivering excellence. Our dedicated team 
+                 of experts is committed to crafting tailored solutions 
+                 that not only align with your goals but also drive your success. 
+                 Explore our services and let's embark on a collaborative 
+                 venture to elevate your digital presence and 
+                 achieve remarkable outcomes</p>
+
+                 <div class="servicecards">
+                    <div class="card1">
+                        <img src="./images/coding.png" alt="">
+                         <h4>Web Development</h4>
+                        <p>Blogs, E-commerce</p>
+                        <a href="">Order Now</a>
+                    </div>
+                 </div>
+        </div>
+       </section>
       </div>
       <div class="navigation-container">
+        <i class="fa-solid fa-bars" id="menu"></i>
         <i class="fa-solid fa-house"></i>
         <img src="../images/information.png" alt="" width="25%" height="25%">
+        <i class="fa-solid fa-gear"></i>
+        <i class="fa-solid fa-quote-right"></i>
+        <i class="fa-solid fa-user-graduate"></i>
+        <i class="fa-solid fa-briefcase"></i>
+        <i class="fa-solid fa-blog"></i>
+        <i class="fa-solid fa-right-to-bracket"></i>
       </div>
     </div>
     <script src="../scripts/script.js"></script>

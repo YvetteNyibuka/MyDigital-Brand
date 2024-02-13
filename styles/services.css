@@ -1,0 +1,23 @@
+#myservices {
+  height: 100vh;
+  /* background-color: aqua; */
+  margin: auto;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#myservices p {
+  color: #767676;
+  padding: 2rem;
+  width: 90%;
+  font-size: 0.8rem;
+}
+
+.card1 {
+  background-color: blue;
+  width: 30%;
+  margin: 0;
+  padding: 0;
+}
