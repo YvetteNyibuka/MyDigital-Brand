@@ -1,0 +1,120 @@
+#contact {
+  background-color: #f0f0f6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.contactintro {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  padding: 20px;
+}
+
+.contactBody {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  width: 100%;
+}
+.leftform {
+  width: 50%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  text-align: center;
+  gap: 1rem;
+  /* background-color: aqua; */
+}
+
+.inputgroup {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.inputgroup label {
+  text-align: start;
+  font-size: 0.8rem;
+}
+
+.inputgroup #inputfield {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #e4e6eb;
+  border: 1px solid #767676;
+  border-radius: 8px;
+}
+.btndivcontact {
+  width: 90%;
+}
+
+#contactbtn {
+  background-color: #ffb400;
+  padding: 0.6rem 2rem;
+  float: right;
+  border: none;
+  border-radius: 2px;
+  margin: auto;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+.rightinfo {
+  width: 45%;
+  gap: 1rem;
+}
+.infogroup {
+  display: flex;
+  flex-direction: column;
+}
+.infoIcon {
+  width: 2rem;
+  height: 2rem;
+  background: #ffb400;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: auto;
+  border-radius: 100%;
+}
+.info1 {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.info1 p {
+  font-size: 0.8rem;
+  color: #767676;
+}
+
+@media (max-width: 800px) {
+  .contactBody {
+    flex-direction: column;
+  }
+  .leftform {
+    width: 100%;
+  }
+  .rightinfo {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+  }
+  .info1 {
+    width: 100%;
+  }
+}

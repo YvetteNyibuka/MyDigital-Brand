@@ -20,7 +20,7 @@ body {
 }
 
 .skills-summary {
-  width: 25%;
+  width: 20%;
   display: flex;
   flex-direction: column;
   /* margin: auto; */
@@ -145,7 +145,7 @@ progress::-moz-progress-bar {
 }
 
 .main-content {
-  width: 60%;
+  width: 75%;
   display: flex;
   flex-direction: column;
 }
@@ -194,12 +194,14 @@ progress::-moz-progress-bar {
 }
 
 .navigation-container {
-  width: 10%;
+  width: 5%;
   min-height: 100vh;
   justify-content: space-around;
   align-items: center;
   display: flex;
   flex-direction: column;
+  position: fixed;
+  margin-left: 95%;
 }
 
 #firstTitle {
@@ -214,7 +216,7 @@ progress::-moz-progress-bar {
 
 /* responsiveness */
 
-@media (min-width: 360px) and (max-width: 800px) {
+@media (max-width: 800px) {
   .skills-summary {
     display: none;
   }
@@ -260,5 +262,9 @@ progress::-moz-progress-bar {
   }
   #menu {
     display: flex;
+  }
+  .navigation-container {
+    width: 15%;
+    margin-left: 85%;
   }
 }

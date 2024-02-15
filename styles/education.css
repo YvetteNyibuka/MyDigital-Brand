@@ -1,6 +1,7 @@
-.education {
-  height: 100vh;
+#education {
+  min-height: 100vh;
   margin-top: 1rem;
+  background-color: #f0f0f6;
 }
 
 .educationcont {
@@ -21,6 +22,7 @@
 
 .education1 {
   display: flex;
+  background-color: #fff;
   width: 100%;
 }
 
@@ -52,4 +54,31 @@
   font-size: 0.8rem;
   padding: 0 1rem;
   text-align: center;
+}
+@media (max-width: 800px) {
+  .educationcont #educationintro {
+    text-align: start;
+  }
+  .education1 {
+    flex-direction: column;
+  }
+  .leftedu {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    /* background-color: aqua; */
+    text-align: start;
+    margin-left: 1rem;
+  }
+  .time {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.7rem;
+    gap: 0;
+    font-size: 0.7rem;
+  }
+  .rigthedu {
+    width: 100%;
+    text-align: start;
+  }
 }

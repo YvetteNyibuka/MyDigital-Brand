@@ -9,6 +9,9 @@
 .aboutcont {
   display: flex;
   width: 100%;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
 }
 
 .aboutpic {
@@ -38,4 +41,19 @@
   border: none !important;
   border-radius: 0.1rem !important;
   justify-content: start;
+}
+
+@media (max-width: 800px) {
+  .aboutcont {
+    flex-direction: column;
+  }
+  .aboutpic,
+  .aboutdesc {
+    width: 90%;
+  }
+
+  .aboutdesc p {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }

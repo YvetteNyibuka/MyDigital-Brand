@@ -24,7 +24,7 @@
 
 .testimonialcards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   width: 90%;
   padding: 1rem;
   gap: 1rem;
@@ -95,4 +95,28 @@
   height: 0.5rem;
   background-color: #ffb400;
   border-radius: 100%;
+}
+
+@media (max-width: 800px) {
+  #testheader {
+    text-align: center;
+  }
+  #testimonials #testimonialintro {
+    padding: 1rem;
+    width: 90%;
+    text-align: start;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+  }
+
+  .testimonial1 {
+    background-color: #fff;
+    width: 90%;
+    border-radius: 0.8rem;
+    flex-direction: column;
+    text-align: start;
+    justify-content: start;
+    padding: 1rem;
+  }
 }
