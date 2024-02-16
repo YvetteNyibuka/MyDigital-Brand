@@ -120,6 +120,6 @@ form .password i {
   font-weight: 500;
   width: 100%;
   text-align: center;
-  background: pink;
+  background: #ffb400;
   transition: 0.2s ease;
 }
