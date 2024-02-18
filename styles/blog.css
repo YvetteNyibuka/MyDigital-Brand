@@ -41,6 +41,14 @@
   height: auto;
   border-radius: 3px 3px 0 0;
 }
+a {
+  text-decoration: none;
+}
+
+#fullblogbtn {
+  background: #ffb400;
+  border: none;
+}
 
 .blog-descrption {
   border-top: 1px solid #eee;
@@ -72,9 +80,9 @@
 
 @media (max-width: 800px) {
   #blogIntro {
-  text-align: start;
-}
-.blogs-wrapper {
-  grid-template-columns: repeat(1, 1fr); 
-}
+    text-align: start;
+  }
+  .blogs-wrapper {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
