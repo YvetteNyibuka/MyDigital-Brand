@@ -64,3 +64,10 @@
     text-align: start;
   }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  #portifolioIntro {
+    font-size: 1.5rem;
+    text-align: start;
+  }
+}

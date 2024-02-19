@@ -53,3 +53,19 @@
     padding: 1rem;
   }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  #myservices #serviceintro {
+    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: auto;
+  }
+  #ptojecttitle {
+    font-size: 1.5rem;
+  }
+  #servicecat {
+    font-size: 1.3rem;
+  }
+}

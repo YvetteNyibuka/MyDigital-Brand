@@ -46,8 +46,13 @@ a {
 }
 
 #fullblogbtn {
-  background: #ffb400;
   border: none;
+  background-color: #fff;
+}
+
+#leanmore {
+  color: #ffb400;
+  font-weight: bolder;
 }
 
 .blog-descrption {
@@ -84,5 +89,25 @@ a {
   }
   .blogs-wrapper {
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  #blogIntro {
+    font-size: 1.5rem;
+    text-align: start;
+  }
+  #blogdescc {
+    font-size: 1.5rem;
+  }
+  .blog-info {
+    gap: 0;
+    justify-content: space-between;
+    font-size: 1.5em;
+  }
+  .blog-statistics {
+    gap: 0;
+    font-size: 1.5rem;
+    justify-content: space-between;
   }
 }

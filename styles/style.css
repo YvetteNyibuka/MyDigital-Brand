@@ -177,7 +177,6 @@ progress::-moz-progress-bar {
 
 #welcome {
   text-align: left;
-  /* padding: 1rem; */
   margin: auto;
   align-items: center;
   justify-content: center;
@@ -266,5 +265,23 @@ progress::-moz-progress-bar {
   .navigation-container {
     width: 15%;
     margin-left: 85%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  #welcome {
+    font-size: 1.4rem;
+  }
+  #firstTitle {
+    font-size: 3rem;
+  }
+  #hireme {
+    font-size: 1.5rem;
+  }
+  #sectiontitle {
+    font-size: 3rem;
+  }
+  .sectiontitle {
+    font-size: 3rem;
   }
 }

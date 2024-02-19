@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .aboutcont {
@@ -55,5 +55,13 @@
   .aboutdesc p {
     display: flex;
     flex-wrap: wrap;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  #contactdetails {
+    font-size: 1.5rem;
+  }
+  #contctmeBtn {
+    font-size: 1.6rem;
   }
 }
