@@ -212,6 +212,9 @@ progress::-moz-progress-bar {
 .skills-summary.show-skills-summary {
   display: flex;
 }
+#navlink {
+  color: black;
+}
 
 /* responsiveness */
 

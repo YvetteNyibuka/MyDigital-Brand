@@ -9,14 +9,23 @@
 
 body {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  margin: auto;
   justify-content: center;
-  padding: 0 10px;
+  width: 100%;
+  padding: 0 5px;
   min-height: 100vh;
   background: lightgray;
   font-family: "Poppins", sans-serif;
 }
-
+.signupbox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  justify-content: center;
+}
 .signupcont {
   width: 100%;
   display: flex;
@@ -29,7 +38,10 @@ body {
   width: 50%;
   height: 100%;
 }
-
+#backhome {
+  text-decoration: none;
+  color: black;
+}
 .signupimg img {
   width: 100%;
   height: 100%;
@@ -62,8 +74,11 @@ form label {
   margin-bottom: 7px;
 }
 
-form input,
-form select {
+.signupbox {
+  width: 100%;
+}
+
+form input {
   height: 45px;
   padding: 10px;
   width: 100%;
@@ -122,4 +137,40 @@ form .password i {
   text-align: center;
   background: #ffb400;
   transition: 0.2s ease;
+}
+
+@media (max-width: 800px) {
+  .signupimg {
+    display: none;
+  }
+  .signupform {
+    width: 90%;
+  }
+  form {
+    width: 100%;
+  }
+  form h2 {
+    font-size: 20px;
+    text-align: center;
+    margin: 0px 0 30px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .signupimg {
+    display: none;
+  }
+  .signupbox {
+    width: 80%;
+  }
+  form label {
+    font-size: 25px;
+    margin-bottom: 15px;
+  }
+  form input {
+    height: 45px;
+    padding: 30px;
+    width: 100%;
+    font-size: 20px; 
+  }
 }
