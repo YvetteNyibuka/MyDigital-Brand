@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create a Blog</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../styles/newBlog.css" />
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Create a Blog</h2>
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="title">Publishing Date:</label>
+          <input type="date" id="date" name="date" required />
+        </div>
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" required />
+        </div>
+
+        <div class="form-group">
+          <label for="author">Author:</label>
+          <input type="text" id="author" name="author" required />
+        </div>
+        <div class="form-group">
+          <label for="picture">Picture:</label>
+          <input type="file" id="picture" name="picture" required />
+        </div>
+
+        <div class="form-group">
+          <label for="content">Content:</label>
+          <textarea id="content" name="content" rows="6" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

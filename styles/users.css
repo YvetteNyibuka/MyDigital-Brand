@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+
+table {
+  width: 90%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  box-shadow: 0 2px 15px rgba(64, 64, 64, 0.7);
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  margin-left: 3rem;
+}
+td,
+th {
+  padding: 15px 20px;
+  text-align: center;
+}
+th {
+  background-color: #767676;
+  color: #fafafa;
+  font-family: "Poppins", sans-serif;
+  font-weight: bolder;
+  text-transform: capitalize;
+}
+tr {
+  width: 100%;
+  background-color: #fafafa;
+  font-family: "Poppins", sans-serif;
+}
+tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-bottom: 1rem;
+  margin-left: 3rem;
+}
