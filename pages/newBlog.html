@@ -3,50 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create a Blog</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-    />
+    <script
+      src="https://cdn.tiny.cloud/1/4qilgajirjr3knm3wxy1rqupf2d4aug2h8vu0qylf9f4bv1l/tinymce/5/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
+    <script src="script.js" defer></script>
+    <title>Blog Form</title>
     <link rel="stylesheet" href="../styles/newBlog.css" />
   </head>
   <body>
-    <div class="form-container">
-      <h2>Create a Blog</h2>
-      <form action="#" method="post">
-        <div class="form-group">
-          <label for="title">Publishing Date:</label>
-          <input type="date" id="date" name="date" required />
-        </div>
-        <div class="form-group">
-          <label for="title">Title:</label>
-          <input type="text" id="title" name="title" required />
-        </div>
-
-        <div class="form-group">
-          <label for="author">Author:</label>
+    <div class="container">
+      <form id="blogForm">
+        <div class="leftinfoo">
+          <label for="author">Blog Author:</label>
           <input type="text" id="author" name="author" required />
-        </div>
-        <div class="form-group">
-          <label for="picture">Picture:</label>
-          <input type="file" id="picture" name="picture" required />
+
+          <label for="blogTitle">Blog Title:</label>
+          <input type="text" id="blogTitle" name="blogTitle" required />
+
+          <label for="">Blog Cover photo</label>
+          <input type="file" />
         </div>
 
-        <div class="form-group">
-          <label for="content">Content:</label>
-          <textarea id="content" name="content" rows="6" required></textarea>
+        <div class="richeditor">
+          <label for="blogContent">Blog Description:</label>
+          <textarea id="blogContent" name="blogContent" required></textarea>
+          <button type="submit" id="createblogBtn">Submit</button>
         </div>
-
-        <button type="submit" class="btn-submit">Submit</button>
       </form>
     </div>
+    <script src="../scripts/newBlog.js"></script>
   </body>
 </html>

@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
   blogsLink.addEventListener("click", () => {
     showSection(blogsSection);
   });
+
   queriesLink.addEventListener("click", () => {
     showSection(messagesSection);
   });
@@ -65,4 +66,56 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(() => {
     showSection(dashboardSection);
   }, 100);
+
+  let modal = document.getElementById("newBlogModal"); // Assuming you have a modal element with this ID
+  let btn = document.getElementById("newBlogBtn");
+  let closeBtn = document.getElementById("closeBtn1");
+
+  btn.onclick = function () {
+    modal.style.display = "block";
+
+    // Fetch and load newBlog.html content into the modal
+    fetch("../pages/newBlog.html") // Corrected the path
+      .then((response) => response.text())
+      .then((html) => {
+        document.querySelector(".modal-content").innerHTML = html;
+
+        // Initialize TinyMCE in the modal
+        tinymce.init({
+          selector: "#blogContent",
+          plugins:
+            "autolink lists link image charmap print preview hr anchor pagebreak",
+          height: 300,
+          branding: false,
+        });
+
+        document
+          .getElementById("blogForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Handle the form submission here
+            const title = document.getElementById("blogTitle").value;
+            const content = tinymce.get("blogContent").getContent();
+
+            // Log the data to the console (you can send it to the server)
+            console.log("Title:", title);
+            console.log("Content:", content);
+
+            // Close the modal after submission
+            modal.style.display = "none";
+          });
+      })
+      .catch((error) => console.error("Error fetching newBlog.html:", error));
+  };
+
+  closeBtn.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
 });
