@@ -17,23 +17,25 @@
 }
 
 .blogs-wrapper {
-  max-width: 1200px;
-  width: 100%;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
   padding: 20px;
-  box-sizing: border-box;
+  width: 100%;
 }
 
 .blog-card {
+  display: none;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  transition: transform 0.3s ease;
+  flex-direction: column;
+  text-align: start;
+  justify-content: start;
+  /* transition: transform 0.3s ease; */
   border-radius: 8px;
   border: none;
+  flex: 0 0 calc(25% - 1rem);
+  max-width: calc(25% - 1rem);
 }
 
 .blog-img img {
