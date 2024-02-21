@@ -23,24 +23,23 @@
 }
 
 .testimonialcards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  width: 90%;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
   padding: 1rem;
-  gap: 1rem;
-  /* background-color: blueviolet; */
 }
 
 .testimonial1 {
+  display: none;
+  flex: 0 0 calc(22% - 1rem); /* Set the flex basis for each testimonial1 */
+  max-width: calc(23% - 1rem); /* Set the maximum width for each testimonial1 */
   background-color: #fff;
-  width: 100%;
   border-radius: 0.8rem;
   flex-direction: column;
   text-align: start;
   justify-content: start;
   padding: 1rem;
 }
-
 #personaltestimonial {
   font-size: 0.6rem;
   text-align: start;
@@ -97,6 +96,14 @@
   border-radius: 100%;
 }
 
+#sliderdiv {
+  background-color: #ffb400;
+  width: 0.5rem;
+  height: 0.7rem;
+  border-radius: 100%;
+  border: none;
+}
+
 @media (max-width: 800px) {
   #testheader {
     text-align: center;
@@ -109,15 +116,12 @@
     margin: auto;
     justify-content: center;
   }
-
+  .testimonialcards {
+    flex-wrap: wrap;
+  }
   .testimonial1 {
-    background-color: #fff;
-    width: 90%;
-    border-radius: 0.8rem;
-    flex-direction: column;
-    text-align: start;
-    justify-content: start;
-    padding: 1rem;
+    flex: 0 0 calc(100% - 1rem);
+    max-width: calc(100% - 1rem);
   }
 }
 
@@ -131,8 +135,13 @@
   #testfyingperson {
     font-size: 1.1rem;
   }
-
+  #testimg {
+    justify-content: center;
+    display: flex;
+    margin: auto;
+    align-items: center;
+  }
   .person img {
-    height: 2rem;
+    height: 4rem;
   }
 }
