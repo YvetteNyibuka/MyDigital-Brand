@@ -31,8 +31,8 @@
 
 .testimonial1 {
   display: none;
-  flex: 0 0 calc(22% - 1rem); /* Set the flex basis for each testimonial1 */
-  max-width: calc(23% - 1rem); /* Set the maximum width for each testimonial1 */
+  flex: 0 0 calc(22% - 1rem);
+  max-width: calc(23% - 1rem);
   background-color: #fff;
   border-radius: 0.8rem;
   flex-direction: column;

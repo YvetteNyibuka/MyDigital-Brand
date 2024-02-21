@@ -21,7 +21,7 @@
   flex-wrap: nowrap;
   gap: 0.5rem;
   padding: 20px;
-  width: 100%;
+  width: 90%;
 }
 
 .blog-card {
@@ -31,7 +31,6 @@
   flex-direction: column;
   text-align: start;
   justify-content: start;
-  /* transition: transform 0.3s ease; */
   border-radius: 8px;
   border: none;
   flex: 0 0 calc(25% - 1rem);
@@ -90,7 +89,16 @@ a {
     text-align: start;
   }
   .blogs-wrapper {
-    grid-template-columns: repeat(1, 1fr);
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+  }
+  .blog-card {
+    text-align: start;
+    justify-content: start;
+    border-radius: 8px;
+    border: none;
+    flex: 0 0 calc(100%);
+    max-width: calc(100%);
   }
 }
 
@@ -99,6 +107,19 @@ a {
     font-size: 1.5rem;
     text-align: start;
   }
+  .blogs-wrapper {
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+  }
+  .blog-card {
+    text-align: start;
+    justify-content: start;
+    border-radius: 8px;
+    border: none;
+    flex: 0 0 calc(100%);
+    max-width: calc(100%);
+  }
+
   #blogdescc {
     font-size: 1.5rem;
   }

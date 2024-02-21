@@ -1,19 +1,25 @@
 #portfolio {
   background-color: #f0f0f6;
-  margin: auto;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  display: flex;
-  flex-direction: column;
+  margin: auto;
+  min-height: 100vh;
 }
 #portifolioIntro {
   width: 90%;
   font-size: 0.7rem;
   color: #767676;
   text-align: center;
+  margin: auto;
+  justify-content: center;
+  display: flex;
 }
-
+#sectiontitle {
+  text-align: center;
+}
 .potifoliocards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -22,7 +28,9 @@
 
 .portfolio1 {
   position: relative;
-  width: 100%;
+  width: 90%;
+  margin: auto;
+  justify-content: center;
 }
 
 .image {
