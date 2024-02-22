@@ -8,16 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
-    validateForm();
-  });
-
-  // Add input event listeners for dynamic validation
-  fullNameInput.addEventListener("input", validateForm);
-  emailInput.addEventListener("input", validateForm);
-  subjectInput.addEventListener("input", validateForm);
-  messageInput.addEventListener("input", validateForm);
-
-  function validateForm() {
     let isValid = true;
 
     // Validate Full Name
@@ -55,7 +45,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Enable or disable the submit button based on validation
     submitBtn.disabled = !isValid;
-  }
+
+    // Prevent form submission if not valid
+    if (!isValid) {
+      event.preventDefault();
+    }
+  });
 
   function showError(inputElement, errorMessage) {
     const errorElement = document.createElement("small");
@@ -66,11 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
     errorElement.style.textAlign = "left";
 
     const inputGroup = inputElement.closest(".inputgroup");
-    // Remove existing error messages before appending a new one
-    const existingError = inputGroup.querySelector(".error-message");
-    if (existingError) {
-      inputGroup.removeChild(existingError);
-    }
     inputGroup.appendChild(errorElement);
   }
 
