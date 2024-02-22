@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
     selector: "#blogContent",
     plugins:
       "autolink lists link image charmap print preview hr anchor pagebreak",
-    // toolbar_mode: "floating",
     height: 300,
     branding: false,
   });

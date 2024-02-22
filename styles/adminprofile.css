@@ -1,13 +1,38 @@
-.profile-container {
-  display: flex;
+#profile-section {
+  background-color: white;
+  height: 90vh;
 }
+
+.profile-container {
+  width: 100%;
+  height: 80%;
+}
+
+.profile-container,
+.user-details,
+.profile-picture {
+  justify-content: center;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  text-align: center;
+}
+
 .user-details {
   width: 60%;
+  height: 100%;
+  background-color: white;
 }
 .profile-picture {
   width: 40%;
+  height: 100%;
+  flex-direction: column;
+  background-color: white;
 }
-
+.profile-picture img {
+  width: 80%;
+  height: 70%;
+}
 .actionBtns {
   margin: 1rem 0;
 }
@@ -34,4 +59,20 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+}
+
+.user-details form {
+  width: 80%;
+  height: 100%;
+  justify-content: space-between;
+}
+.input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+.input-group #editor {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }

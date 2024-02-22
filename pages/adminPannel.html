@@ -122,28 +122,28 @@
             <div class="box-container">
               <div class="box box1">
                 <div class="text">
-                  <p class="topic-heading">60.5k</p>
-                  <h2 class="topic">Blog Views</h2>
+                  <h1 class="topic-heading">20</h1>
+                  <h2 class="topic">Blogs</h2>
                 </div>
 
-                <i class="fa-solid fa-eye icon1"></i>
+              <i class="fa-solid fa-blog icon1" ></i>
               </div>
               <div class="box box2">
                 <div class="text">
-                  <p class="topic-heading">150</p>
-                  <h2 class="topic">Likes</h2>
+                  <p class="topic-heading">60</p>
+                  <h2 class="topic">Users</h2>
                 </div>
 
-                <i class="fa-solid fa-heart icon1"></i>
+                <i class="fa-solid fa-people-group icon1" ></i>
               </div>
 
               <div class="box box3">
                 <div class="text">
-                  <p class="topic-heading">320</p>
-                  <h2 class="topic">Comments</h2>
+                  <p class="topic-heading">60</p>
+                  <h2 class="topic">Querries</h2>
                 </div>
 
-                <i class="fa-regular fa-message icon1"></i>
+                <i class="fa-solid fa-question icon1"></i>
               </div>
 
               <div class="box box4">
@@ -641,18 +641,15 @@
               </tr>
             </table>
           </div>
-              </div>
-            </div>
-          </div>
-          <div id="profile-section" class="main-section">
+           <div id="profile-section" class="main-section">
             <h1>Profile Details</h1>
             <div class="profile-container">
       <div class="profile-picture">
-        <img src="../images/avatar.png" alt="" height="80%" width="85%" />
+        <img src="../images/avatar.png" alt="" id="editloggedimage" />
         <button class="picBtn">Change Profile</button>
       </div>
       <div class="user-details">
-        <form action="">
+        <form action="" id="userDetails">
           <div class="input-group">
             <label for="">First Name:</label>
             <input type="text" id="editor" />
@@ -674,9 +671,9 @@
             <input type="text" id="editor" />
           </div>
           <div class="actionBtns">
-            <button class="actionBtn">Update</button>
-            <button class="actionBtn">Save</button>
-            <button class="actionBtn">Cancel</button>
+            <button class="actionBtn" id="updateBtn">Update</button>
+            <button class="actionBtn" id="saveBtn" style="display: none;">Save</button>
+            <button class="actionBtn" id="cancelBtn" style="display:none;">Cancel</button>
           </div>
         </form>
       </div>
@@ -685,10 +682,14 @@
           <div id="logout-section" class="main-section">
             <h1>Logout Content</h1>
           </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
-
+    <!-- <script src="../scripts/adminprofile.js"></script> -->
     <script src="../scripts/adminPannel.js"></script>
   </body>
 </html>
