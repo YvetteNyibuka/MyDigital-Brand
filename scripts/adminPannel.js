@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let blogsLink = document.getElementById("blogs-link");
   let profileLink = document.getElementById("profile-link");
   let logoutLink = document.getElementById("logout-link");
-  let queriesLink = document.getElementById("query-link"); // Corrected ID here
+  let queriesLink = document.getElementById("query-link");
 
   let dashboardSection = document.getElementById("dashboard-section");
   let usersSection = document.getElementById("users-section");
@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let profileSection = document.getElementById("profile-section");
   let logoutSection = document.getElementById("logout-section");
 
-  // Add event listeners for each navigation link
   dashboardLink.addEventListener("click", () => {
     showSection(dashboardSection);
   });
@@ -141,4 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
     saveBtn.style.display = "none";
     cancelBtn.style.display = "none";
   });
+
+  //validating new blog form
 });

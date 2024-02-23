@@ -123,7 +123,7 @@ header {
 
 .main {
   height: calc(100vh - 70px);
-  width: 82%;
+  width: 100%;
   overflow-y: scroll;
   background-color: white;
   overflow-x: hidden;
@@ -398,6 +398,9 @@ header {
   .nav-img {
     height: 25px;
   }
+  nav h4 {
+    display: none;
+  }
   .nav-option {
     gap: 30px;
   }
@@ -417,6 +420,9 @@ header {
   }
   .nav-option {
     gap: 30px;
+  }
+  nav h4 {
+    display: flex;
   }
   .nav-option h3 {
     font-size: 20px;
@@ -459,7 +465,7 @@ header {
     background-color: var(--background-color3);
     padding: 0 20px;
     font-size: 15px;
-    border: 2px solid var(--secondary-color);
+    border: 2px solid #767676;
   }
 }
 
@@ -467,6 +473,7 @@ header {
   .message {
     display: none;
   }
+
   .logosec {
     width: 100%;
     justify-content: space-between;
@@ -508,12 +515,14 @@ header {
     font-size: 10px;
     height: 27px;
   }
+
   .report-header {
     height: 60px;
     padding: 10px 10px 5px 10px;
   }
   .searchbtn img {
     height: 20px;
+    background-color: #ffb400;
   }
 }
 
@@ -526,6 +535,7 @@ header {
     font-size: 8px;
     height: 27px;
   }
+
   .report-header {
     height: 60px;
     padding: 10px 5px 5px 5px;
@@ -549,6 +559,7 @@ header {
   }
   .searchbtn {
     width: 40px;
+    background-color: #ffb400;
   }
   .searchbar2 input {
     width: 180px;
