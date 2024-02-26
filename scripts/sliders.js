@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     validateForm();
   });
 
-  // Add input event listeners for dynamic validation
   fullNameInput.addEventListener("input", validateForm);
   emailInput.addEventListener("input", validateForm);
   subjectInput.addEventListener("input", validateForm);
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
   function validateForm() {
     let isValid = true;
 
-    // Validate Full Name
     if (fullNameInput.value.trim() === "") {
       isValid = false;
       showError(fullNameInput, "Please enter your full name");
@@ -28,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
       hideError(fullNameInput);
     }
 
-    // Validate Email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(emailInput.value)) {
       isValid = false;
@@ -37,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
       hideError(emailInput);
     }
 
-    // Validate Subject
     if (subjectInput.value.trim() === "") {
       isValid = false;
       showError(subjectInput, "Please enter a subject");
@@ -45,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
       hideError(subjectInput);
     }
 
-    // Validate Message
     if (messageInput.value.trim() === "") {
       isValid = false;
       showError(messageInput, "Please enter your message");
@@ -53,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
       hideError(messageInput);
     }
 
-    // Enable or disable the submit button based on validation
     submitBtn.disabled = !isValid;
   }
 
@@ -66,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
     errorElement.style.textAlign = "left";
 
     const inputGroup = inputElement.closest(".inputgroup");
-    // Remove existing error messages before appending a new one
     const existingError = inputGroup.querySelector(".error-message");
     if (existingError) {
       inputGroup.removeChild(existingError);

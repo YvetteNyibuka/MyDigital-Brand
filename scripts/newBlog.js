@@ -7,30 +7,25 @@ document.addEventListener("DOMContentLoaded", function () {
     branding: false,
   });
 
-  const blogForm = document.getElementById("blogForm");
-  const createblogBtn = document.getElementById("createblogBtn");
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("#blogForm");
+    const blogCategoryInput = document.getElementById("blogcategory");
+    const authorInput = document.getElementById("author");
+    const blogTitleInput = document.getElementById("blogTitle");
+    const blogContentInput = document.getElementById("blogContent");
+    const imageInput = document.getElementById("blogImage"); // Add this line
+    const submitBtn = document.getElementById("createblogBtn");
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      validateForm();
+    });
 
-  blogForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    // Validate every input is filled
-    let isValid = validateForm();
-
-    if (isValid) {
-      // Form submission logic goes here
-      const title = document.getElementById("blogTitle").value;
-      const content = tinymce.get("blogContent").getContent();
-
-      // Example: Log the data to the console
-      console.log("Title:", title);
-      console.log("Content:", content);
-    }
-  });
-
-  createblogBtn.addEventListener("click", function (event) {
-    // Trigger form submission when the button is clicked
-    blogForm.dispatchEvent(new Event("submit"));
-  });
+    // Add input event listeners for dynamic validation
+    blogCategoryInput.addEventListener("input", validateForm);
+    authorInput.addEventListener("input", validateForm);
+    blogTitleInput.addEventListener("input", validateForm);
+    blogContentInput.addEventListener("input", validateForm);
+    imageInput.addEventListener("input", validateForm); // Add this line
 
   function validateForm() {
     let isValid = true;

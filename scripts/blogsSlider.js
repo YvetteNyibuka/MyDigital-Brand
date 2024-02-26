@@ -17,11 +17,11 @@ function showSlide1(n) {
 }
 
 function nextSlide1() {
-  showSlide1(currentSlideup + 4);
+  showSlide1(currentSlideup + 1);
 }
 
 function prevSlide1() {
-  showSlide1(currentSlideup - 4);
+  showSlide1(currentSlideup - 1);
 }
 
 showSlide1(currentSlideup);
