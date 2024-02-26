@@ -17,18 +17,12 @@ document.addEventListener("DOMContentLoaded", function () {
     let isValid = validateForm();
 
     if (isValid) {
-      // Form submission logic goes here
       const title = document.getElementById("blogTitle").value;
       const content = tinymce.get("blogContent").getContent();
-
-      // Example: Log the data to the console
-      console.log("Title:", title);
-      console.log("Content:", content);
     }
   });
 
   createblogBtn.addEventListener("click", function (event) {
-    // Trigger form submission when the button is clicked
     blogForm.dispatchEvent(new Event("submit"));
   });
 
