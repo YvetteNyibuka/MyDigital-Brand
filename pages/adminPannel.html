@@ -527,6 +527,23 @@
   </div>
 </div>
           <div id="messages-section" class="main-section">
+            <div id="replyModal" class="modalreply">
+            <div class="modal-content1">
+                <span id="close">&times;</span>
+                <h3 id="contactsect">Reply to Message</h3>
+                <form action="" id="replyForm">
+                    <div class="inputTeam">
+                      <label for="">To:</label>
+                    <input type="text">
+                    </div>
+                 <div class="inputTeam">
+                     <label for="">Message:</label>
+                    <input type="text">
+                 </div>
+                    <button type="submit" id="replyBtn">Send</button>
+                </form>
+            </div>
+        </div>
             <div class="user-header">
               <h2>What my followers are talking</h2>
         
@@ -553,7 +570,7 @@
 
                 <td>1368</td>
              <td id="actions2">
-                <i class="fa-solid fa-reply"></i>
+                <i class="fa-solid fa-reply" id="replyBtne"></i>
                   <i class="fa-solid fa-trash-can"></i>
                 </td>
               </tr>
@@ -566,7 +583,7 @@
 
                 <td>1368</td>
              <td id="actions2">
-                <i class="fa-solid fa-reply"></i>
+                <i class="fa-solid fa-reply" id="replyBtne"></i>
                   <i class="fa-solid fa-trash-can"></i>
                 </td>
               </tr>
@@ -579,7 +596,7 @@
 
                 <td>1368</td>
              <td id="actions2">
-                <i class="fa-solid fa-reply"></i>
+                <i class="fa-solid fa-reply" id="replyBtne"></i>
                   <i class="fa-solid fa-trash-can"></i>
                 </td>
               </tr>
@@ -592,7 +609,7 @@
 
                 <td>1368</td>
              <td id="actions2">
-                <i class="fa-solid fa-reply"></i>
+                <i class="fa-solid fa-reply" id="replyBtne"></i>
                   <i class="fa-solid fa-trash-can"></i>
                 </td>
               </tr>
@@ -605,7 +622,7 @@
 
                 <td>1368</td>
              <td id="actions2">
-                <i class="fa-solid fa-reply"></i>
+                <i class="fa-solid fa-reply" id="replyBtne"></i>
                   <i class="fa-solid fa-trash-can"></i>
                 </td>
               </tr>
@@ -618,7 +635,7 @@
 
                 <td>1368</td>
              <td id="actions2">
-                <i class="fa-solid fa-reply"></i>
+                <i class="fa-solid fa-reply" id="replyBtne"></i>
                   <i class="fa-solid fa-trash-can"></i>
                 </td>
               </tr>
@@ -631,7 +648,7 @@
 
                 <td>1368</td>
              <td id="actions2">
-                <i class="fa-solid fa-reply"></i>
+                <i class="fa-solid fa-reply" id="replyBtne"></i>
                   <i class="fa-solid fa-trash-can"></i>
                 </td>
               </tr>
@@ -639,7 +656,6 @@
           </div>
            <div id="profile-section" class="main-section">
             <div class="profile-container">
-            <h1 id="smallsecreentit">Profile Details</h1>
           <div class="profile-picture">
             <img src="../images/avatar.png" alt="" id="editloggedimage" />
             <button class="picBtn">Change Profile</button>
@@ -688,5 +704,6 @@
     <!-- <script src="../scripts/adminprofile.js"></script> -->
     <script src="../scripts/newBlog.js"></script>
     <script src="../scripts/adminPannel.js"></script>
+    <script src="../scripts/replyContact.js"></script>
   </body>
 </html>

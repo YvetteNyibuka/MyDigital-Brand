@@ -140,6 +140,4 @@ document.addEventListener("DOMContentLoaded", function () {
     saveBtn.style.display = "none";
     cancelBtn.style.display = "none";
   });
-
-  //validating new blog form
 });
