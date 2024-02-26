@@ -7,100 +7,65 @@ document.addEventListener("DOMContentLoaded", function () {
     branding: false,
   });
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("#blogForm");
-    const blogCategoryInput = document.getElementById("blogcategory");
-    const authorInput = document.getElementById("author");
-    const blogTitleInput = document.getElementById("blogTitle");
-    const blogContentInput = document.getElementById("blogContent");
-    const imageInput = document.getElementById("blogImage"); // Add this line
-    const submitBtn = document.getElementById("createblogBtn");
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      validateForm();
-    });
+  const blogForm = document.getElementById("blogForm");
+  const createblogBtn = document.getElementById("createblogBtn");
 
-    // Add input event listeners for dynamic validation
-    blogCategoryInput.addEventListener("input", validateForm);
-    authorInput.addEventListener("input", validateForm);
-    blogTitleInput.addEventListener("input", validateForm);
-    blogContentInput.addEventListener("input", validateForm);
-    imageInput.addEventListener("input", validateForm); // Add this line
+  blogForm.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-    function validateForm() {
-      let isValid = true;
+    // Validate every input is filled
+    let isValid = validateForm();
 
-      // Validate Blog Category
-      if (blogCategoryInput.value.trim() === "") {
-        isValid = false;
-        showError(blogCategoryInput, "Please enter the blog category");
-      } else {
-        hideError(blogCategoryInput);
-      }
+    if (isValid) {
+      // Form submission logic goes here
+      const title = document.getElementById("blogTitle").value;
+      const content = tinymce.get("blogContent").getContent();
 
-      // Validate Author
-      if (authorInput.value.trim() === "") {
-        isValid = false;
-        showError(authorInput, "Please enter the author name");
-      } else {
-        hideError(authorInput);
-      }
-
-      // Validate Blog Title
-      if (blogTitleInput.value.trim() === "") {
-        isValid = false;
-        showError(blogTitleInput, "Please enter the blog title");
-      } else {
-        hideError(blogTitleInput);
-      }
-
-      // Validate Blog Content length
-      if (blogContentInput.value.trim().length < 250) {
-        isValid = false;
-        showError(
-          blogContentInput,
-          "Blog content must be at least 250 characters long"
-        );
-      } else {
-        hideError(blogContentInput);
-      }
-
-      // Validate Image input
-      if (imageInput.files.length === 0) {
-        isValid = false;
-        showError(imageInput, "Please select a blog cover photo");
-      } else {
-        hideError(imageInput);
-      }
-
-      // Enable or disable the submit button based on validation
-      submitBtn.disabled = !isValid;
-    }
-
-    function showError(inputElement, errorMessage) {
-      const errorElement = document.createElement("small");
-      errorElement.textContent = errorMessage;
-      errorElement.style.color = "red";
-      errorElement.classList.add("error-message");
-      errorElement.style.fontSize = "10px";
-      errorElement.style.textAlign = "left";
-
-      const inputParent = inputElement.parentElement;
-      // Remove existing error messages before appending a new one
-      const existingError = inputParent.querySelector(".error-message");
-      if (existingError) {
-        inputParent.removeChild(existingError);
-      }
-      inputParent.appendChild(errorElement);
-    }
-
-    function hideError(inputElement) {
-      const inputParent = inputElement.parentElement;
-      const errorElement = inputParent.querySelector(".error-message");
-
-      if (errorElement) {
-        inputParent.removeChild(errorElement);
-      }
+      // Example: Log the data to the console
+      console.log("Title:", title);
+      console.log("Content:", content);
     }
   });
+
+  createblogBtn.addEventListener("click", function (event) {
+    // Trigger form submission when the button is clicked
+    blogForm.dispatchEvent(new Event("submit"));
+  });
+
+  function validateForm() {
+    let isValid = true;
+    const inputs = blogForm.querySelectorAll(
+      "#blogForm input, #blogForm textarea"
+    );
+
+    inputs.forEach((input) => {
+      if (!input.value.trim()) {
+        isValid = false;
+        showError(input, "Field is required");
+      } else {
+        hideError(input);
+      }
+    });
+
+    return isValid;
+  }
+
+  function showError(inputElement, errorMessage) {
+    const errorElement = document.createElement("small");
+    errorElement.textContent = errorMessage;
+    errorElement.style.color = "red";
+    errorElement.classList.add("error-message");
+
+    const formGroup = inputElement.closest(".form-group");
+    formGroup.appendChild(errorElement);
+  }
+
+  function hideError(inputElement) {
+    const formGroup = inputElement.closest(".form-group");
+    const errorElement = formGroup.querySelector(".error-message");
+
+    if (errorElement) {
+      formGroup.removeChild(errorElement);
+    }
+  }
 });
