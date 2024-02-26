@@ -97,13 +97,15 @@
 }
 
 #sliderdiv {
-  background-color: #ffb400;
-  width: 0.5rem;
-  height: 0.7rem;
+  /* background-color: #ffb400; */
+  /* width: 0.5rem;
+  height: 0.7rem; */
   border-radius: 100%;
   border: none;
 }
-
+#sliderdiv .slide {
+  font-size: 3rem;
+}
 @media (max-width: 800px) {
   #testheader {
     text-align: center;

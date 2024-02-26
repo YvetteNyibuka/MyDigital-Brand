@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const blogContentInput = document.getElementById("blogContent");
     const imageInput = document.getElementById("blogImage"); // Add this line
     const submitBtn = document.getElementById("createblogBtn");
-
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       validateForm();

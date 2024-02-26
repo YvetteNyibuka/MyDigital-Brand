@@ -81,7 +81,7 @@ a {
 
 .blog-descrption p {
   font-size: 0.8rem;
-  color: #767676;
+  color: hsl(0, 0%, 46%);
 }
 
 @media (max-width: 800px) {
