@@ -88,10 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
     JSON.parse(localStorage.getItem("publishedBlogs")) || [];
   console.log("all blogs", publishedBlogs);
 
-  // function renderPublishedBlogs() {
-  //   const blogList = document.getElementById("blogs-wrapper");
-  //   blogList.innerHTML = "";
-
   publishedBlogs.forEach((blog, index) => {
     const blogCard = document.getElementById("blogs-wrapper");
     blogCard.innerHTML += ` <div class="blog-card" id="blog-card">
@@ -102,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <p id="blogdescc">${blog.blogContent.slice(
               0,
               100
-            )}... <a id="leanmore" href="./pages/singleblog.html">Learn More</a></button>
+            )}... <a id="leanmore" href="./pages/singleblog.html?id=${blog.blogid}">Learn More</a></button>
             </p>
           </div>
           <div class="blog-info">
