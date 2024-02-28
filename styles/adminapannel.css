@@ -48,6 +48,10 @@ header {
   cursor: pointer;
 }
 
+#new-blog-section {
+  height: 100vh;
+}
+
 .searchbar,
 .message,
 .logosec {
@@ -350,27 +354,7 @@ header {
   align-items: center;
 }
 
-.modal {
-  display: none;
-  position: fixed;
-  top: 0%;
-  left: 0%;
-  background-color: rgba(0, 0, 0, 0.3);
-  height: 100vh;
-  width: 100vw;
-  padding: 20px;
-  border: 1px solid #ccc;
-  z-index: 1000;
-}
 
-.modal-content {
-  display: flex;
-  align-items: center;
-  margin: auto;
-  justify-content: center;
-  height: fit-content;
-  font-family: "Poppins", sans-serif;
-}
 
 .icon2 {
   position: absolute;

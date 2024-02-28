@@ -7,13 +7,12 @@ document.addEventListener("DOMContentLoaded", function () {
     branding: false,
   });
 
-  const blogForm = document.getElementById("blogForm");
+  const blogForm = document.getElementById("blogForm1");
   const createblogBtn = document.getElementById("createblogBtn");
 
   blogForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    // Validate every input is filled
     let isValid = validateForm();
 
     if (isValid) {

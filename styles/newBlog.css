@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: green;
 }
 
 .container {
@@ -19,6 +19,7 @@ form {
   height: 100%;
   justify-content: space-between;
   width: 100%;
+  /* background-color: aqua; */
 }
 
 .leftinfoo {

@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
     let isValid = true;
 
-    // Validate Full Name
     if (fullNameInput.value.trim() === "") {
       isValid = false;
       showError(fullNameInput, "Please enter your full name");
@@ -18,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
       hideError(fullNameInput);
     }
 
-    // Validate Email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(emailInput.value)) {
       isValid = false;
@@ -27,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
       hideError(emailInput);
     }
 
-    // Validate Subject
     if (subjectInput.value.trim() === "") {
       isValid = false;
       showError(subjectInput, "Please enter a subject");
@@ -35,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
       hideError(subjectInput);
     }
 
-    // Validate Message
     if (messageInput.value.trim() === "") {
       isValid = false;
       showError(messageInput, "Please enter your message");
@@ -43,10 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
       hideError(messageInput);
     }
 
-    // Enable or disable the submit button based on validation
     submitBtn.disabled = !isValid;
 
-    // Prevent form submission if not valid
     if (!isValid) {
       event.preventDefault();
     }
