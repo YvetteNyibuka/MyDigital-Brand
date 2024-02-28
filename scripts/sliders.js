@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // if (publishedBlogs.length > 0) {
+  //   console.log("all blogs", publishedBlogs);
+  //   document.getElementById("author1").innerHTML = publishedBlogs[0].author;
+  //   document.getElementById("blogdescc").innerHTML = publishedBlogs[0].blogContent;
+
+  // }
+
   const form = document.querySelector("#contactForm");
   const fullNameInput = document.getElementById("full-names");
   const emailInput = document.getElementById("email");
@@ -75,4 +82,74 @@ document.addEventListener("DOMContentLoaded", function () {
       inputGroup.removeChild(errorElement);
     }
   }
+
+  // blogs rendering
+  const publishedBlogs =
+    JSON.parse(localStorage.getItem("publishedBlogs")) || [];
+  console.log("all blogs", publishedBlogs);
+
+  // function renderPublishedBlogs() {
+  //   const blogList = document.getElementById("blogs-wrapper");
+  //   blogList.innerHTML = "";
+
+  publishedBlogs.forEach((blog, index) => {
+    const blogCard = document.getElementById("blogs-wrapper");
+    blogCard.innerHTML += ` <div class="blog-card" id="blog-card">
+                      <div class="blog-img" id="blog-img">
+                  <img src=${blog.image} alt="">
+                 </div>
+          <div class="blog-descrption">
+            <p id="blogdescc">${blog.blogContent.slice(
+              0,
+              100
+            )}... <a id="leanmore" href="./pages/singleblog.html">Learn More</a></button>
+            </p>
+          </div>
+          <div class="blog-info">
+            <p id="author1">${blog.author}</p>
+            <p>on 19 Jan 2024</p>
+          </div>
+          <div class ="blog-statistics">
+            <p>❤️ 120</p>
+            <p>💬 50</p>
+            <p>👁️ 1050</p>
+          </div>
+        </div>
+        </div>
+        `;
+  });
+
+  //blog sliderssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+  let currentSlideup = 0;
+
+  function showSlide1(n) {
+    const blogElement = document.querySelectorAll(".blog-card");
+    const totalSlides = blogElement.length;
+
+    blogElement.forEach((element) => {
+      element.style.display = "none";
+    });
+
+    currentSlideup = (n + totalSlides) % totalSlides;
+
+    for (let i = 0; i < 4; i++) {
+      const index = (currentSlideup + i) % totalSlides;
+      blogElement[index].style.display = "flex";
+    }
+  }
+
+  function nextSlide1() {
+    showSlide1(currentSlideup + 1);
+  }
+
+  function prevSlide1() {
+    showSlide1(currentSlideup - 1);
+  }
+
+  showSlide1(currentSlideup);
+
+  const nextBtn = document.querySelector(".nextBtn"); 
+  const prevBtn = document.querySelector(".prevBtn"); 
+  nextBtn.addEventListener("click", nextSlide1); 
+  prevBtn.addEventListener("click", prevSlide1); 
 });

@@ -1,26 +1,30 @@
-// 1. creating new blog
-
 const publishedBlogs = JSON.parse(localStorage.getItem("publishedBlogs")) || [];
 
-let editingIndex = null;
+let nextBlogId = 1;
 
 function savePublishedBlogsToLocalStorage() {
   localStorage.setItem("publishedBlogs", JSON.stringify(publishedBlogs));
 }
-let nextBlogId = 1;
+
 function addBlog() {
   const blogcategory = document.getElementById("blogcategory").value;
   const author = document.getElementById("author").value;
   const blogTitle = document.getElementById("blogTitle").value;
   const coverPhoto = document.getElementById("coverPhoto");
-  const image = coverPhoto.files[0]; // Get the uploaded image
-  const blogContent = tinymce.get("blogContent").getContent().value;
+  const image = coverPhoto.files[0];
+
+  const blogContentHTML = tinymce.get("blogContent").getContent();
+
+  const tempElement = document.createElement("div");
+  tempElement.innerHTML = blogContentHTML;
+
+  const blogContentText = tempElement.textContent || tempElement.innerText;
 
   const reader = new FileReader();
 
   reader.readAsDataURL(image);
   const blogid = nextBlogId++;
-  console.log("Generated blogid:", blogid); // Debug: Log the generated blogid
+  console.log("Generated blogid:", blogid);
 
   reader.addEventListener("load", () => {
     const imageUrl = reader.result;
@@ -29,11 +33,18 @@ function addBlog() {
       blogcategory,
       author,
       blogTitle,
-      blogContent,
+      blogContent: blogContentText, 
       image: imageUrl,
     });
     savePublishedBlogsToLocalStorage();
-    //   renderPublishedBlogs();
     clearForm();
   });
+}
+
+function clearForm() {
+  document.getElementById("blogcategory").value = "";
+  document.getElementById("author").value = "";
+  document.getElementById("blogTitle").value = "";
+  document.getElementById("coverPhoto").value = "";
+  tinymce.get("blogContent").setContent("");
 }
