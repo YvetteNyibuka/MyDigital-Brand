@@ -1,64 +1,39 @@
-document.addEventListener("DOMContentLoaded", function () {
-  tinymce.init({
-    selector: "#blogContent",
-    plugins:
-      "autolink lists link image charmap print preview hr anchor pagebreak",
-    height: 300,
-    branding: false,
-  });
+// 1. creating new blog
 
-  const blogForm = document.getElementById("blogForm1");
-  const createblogBtn = document.getElementById("createblogBtn");
+const publishedBlogs = JSON.parse(localStorage.getItem("publishedBlogs")) || [];
 
-  blogForm.addEventListener("submit", function (event) {
-    event.preventDefault();
+let editingIndex = null;
 
-    let isValid = validateForm();
+function savePublishedBlogsToLocalStorage() {
+  localStorage.setItem("publishedBlogs", JSON.stringify(publishedBlogs));
+}
+let nextBlogId = 1;
+function addBlog() {
+  const blogcategory = document.getElementById("blogcategory").value;
+  const author = document.getElementById("author").value;
+  const blogTitle = document.getElementById("blogTitle").value;
+  const coverPhoto = document.getElementById("coverPhoto");
+  const image = coverPhoto.files[0]; // Get the uploaded image
+  const blogContent = tinymce.get("blogContent").getContent().value;
 
-    if (isValid) {
-      const title = document.getElementById("blogTitle").value;
-      const content = tinymce.get("blogContent").getContent();
-    }
-  });
+  const reader = new FileReader();
 
-  createblogBtn.addEventListener("click", function (event) {
-    blogForm.dispatchEvent(new Event("submit"));
-  });
+  reader.readAsDataURL(image);
+  const blogid = nextBlogId++;
+  console.log("Generated blogid:", blogid); // Debug: Log the generated blogid
 
-  function validateForm() {
-    let isValid = true;
-    const inputs = blogForm.querySelectorAll(
-      "#blogForm input, #blogForm textarea"
-    );
-
-    inputs.forEach((input) => {
-      if (!input.value.trim()) {
-        isValid = false;
-        showError(input, "Field is required");
-      } else {
-        hideError(input);
-      }
+  reader.addEventListener("load", () => {
+    const imageUrl = reader.result;
+    publishedBlogs.push({
+      blogid,
+      blogcategory,
+      author,
+      blogTitle,
+      blogContent,
+      image: imageUrl,
     });
-
-    return isValid;
-  }
-
-  function showError(inputElement, errorMessage) {
-    const errorElement = document.createElement("small");
-    errorElement.textContent = errorMessage;
-    errorElement.style.color = "red";
-    errorElement.classList.add("error-message");
-
-    const formGroup = inputElement.closest(".form-group");
-    formGroup.appendChild(errorElement);
-  }
-
-  function hideError(inputElement) {
-    const formGroup = inputElement.closest(".form-group");
-    const errorElement = formGroup.querySelector(".error-message");
-
-    if (errorElement) {
-      formGroup.removeChild(errorElement);
-    }
-  }
-});
+    savePublishedBlogsToLocalStorage();
+    //   renderPublishedBlogs();
+    clearForm();
+  });
+}

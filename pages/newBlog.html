@@ -31,19 +31,20 @@
             <input type="text" id="blogTitle" name="blogTitle" />
 
             <label for="">Blog Cover photo</label>
-            <input type="file" />
+            <input type="file" id="coverPhoto" />
           </div>
 
           <div class="richeditor">
             <label for="blogContent">Blog Description:</label>
             <textarea id="blogContent" name="blogContent"></textarea>
-            <button type="button" id="createblogBtn">Subsmit</button>
+                      <button type="button" id="createblogBtn" onclick="addBlog()">
+            Subsmit
+          </button>
           </div>
+
         </form>
       </div>
     </div>
 
-    <script src="../scripts/newBlog.js"></script>
-    <script src="../scripts/adminPannel.js"></script>
   </body>
 </html>
