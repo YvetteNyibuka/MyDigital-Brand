@@ -73,6 +73,95 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+   // create a new comment
+  //  const publishedComments = JSON.parse(localStorage.getItem("Comments")) || [];
+  //  let nextCommentId = 1;
+  //  addComment()
+  //  function saveCommentsToLocalStorage() {
+  //   localStorage.setItem("Comments", JSON.stringify(publishedComments));
+  // }
+  //  function addComment(){
+
+  // const commentingUsername = document.getElementById("userName").value;
+  // const commentMessage = document.getElementById("commentMessage").value;
+  // console.log("Comment", commentMessage);
+  // const commentBtn = document.getElementById("commentBtn");
+
+  // const commentId = nextCommentId++;
+  // publishedComments.push(
+  //  commentId,
+  //  blogId,
+  //  commentMessage,
+  //  commentingUsername,
+  //  )
+  //  saveCommentsToLocalStorage();
+  //  clearForm1();
+  //  }
+
+  //  function clearForm1() {
+  //  document.getElementById("userName").value = "";
+  //  document.getElementById("commentMessage").value = "";
+  //  }
+
+  const commentBtn = document.getElementById("commentBtn");
+  let nextCommentId = 1
+  const publishedComments = JSON.parse(localStorage.getItem("Comments")) || [];
+  console.log("single blogId", blogId);
+  commentBtn.addEventListener("click", () => {
+  const commentingUsername = document.getElementById("userName").value;
+  const commentMessage = document.getElementById("commentMessage").value;
+  const commentId  = nextCommentId++;
+
+  const newComment = 
+    {
+      username: commentingUsername,
+      message: commentMessage,
+      commentId: commentId,
+      currentblogId: blogId
+    }
+
+
+    publishedComments.push(newComment);
+    localStorage.setItem("Comments", JSON.stringify(publishedComments));
+  });
+ 
+  console.log("comments", publishedComments);
+
+   for(let i = 0; i<publishedComments.length-1; i++){
+      if(blogId === publishedComments[i].currentblogId){
+        const commentsNumber = document.getElementById("commentsNumber");
+        const createdComment = document.getElementById("dynamicContent");
+        createdComment.innerHTML += `
+        <div class="commentcontent">
+        <p id="commentdesc">
+       ${publishedComments[i].message}
+        </p>
+        <div class="additions1">
+          <p><i class="fa-solid fa-thumbs-up"></i></p>
+          <p><i class="fa-solid fa-thumbs-down"></i></p>
+          <p class="reply-btn">Reply</p>
+        </div>
+        
+        <div class="reply-section">
+        <form action="">
+<input type="text" placeholder="Reply to this comment..." id="replyy"/>
+<div class="additions">
+<div class="emogi">
+<i class="fa-solid fa-face-smile"></i>
+</div>
+<div class="decisions">
+<p class="cancel-reply">Cancel</p>
+<p class="post-reply">Reply</p>
+</div>
+</div>
+        </form>
+         </div>
+
+
+      </div>`
+      }
+   }
+
   const replyButtons = document.querySelectorAll(".reply-btn");
   replyButtons.forEach(function (button) {
     button.addEventListener("click", function () {
@@ -92,4 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
       replySection.classList.remove("show-reply-section");
     });
   });
+
+ 
 });

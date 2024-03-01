@@ -1,10 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // if (publishedBlogs.length > 0) {
-  //   console.log("all blogs", publishedBlogs);
-  //   document.getElementById("author1").innerHTML = publishedBlogs[0].author;
-  //   document.getElementById("blogdescc").innerHTML = publishedBlogs[0].blogContent;
-
-  // }
 
   const form = document.querySelector("#contactForm");
   const fullNameInput = document.getElementById("full-names");

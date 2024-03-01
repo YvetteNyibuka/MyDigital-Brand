@@ -32,7 +32,7 @@
       </div>
          <div class="commentRestblogs" style="display: flex;">
            <div class="commentsection">
-            <h1>5 Comments</h1>
+            <h1 id="commentsNumber">5 Comments</h1>
             <div class="commentcreation">
               <div class="commentingperson">
                 <img src="../images/avatar.png" alt="" />
@@ -40,180 +40,27 @@
 
               <div class="createcomment">
                 <form action="">
-                  <input type="text" placeholder="Add a comment..." />
+                  <input type="text" name="" id="userName" placeholder="Enter your name">
+                  <input type="text" placeholder="Add a comment..."  id="commentMessage"/>
                   <div class="additions">
                     <div class="emogi">
                       <i class="fa-solid fa-face-smile"></i>
                     </div>
                     <div class="decisions">
                       <p>Cancel</p>
-                      <p>Comment</p>
+                      <button type="button" style="border:none ; background-color: white;" id="commentBtn" ><p>Comment</p></button>
                     </div>
                   </div>
                 </form>
               </div>
             </div>
             <div class="createdcomment">
-              <div class="commenter">
+              <!-- <div class="commenter">
                 <img src="../images/me-removebg-preview.png" alt="" />
-              </div>
+              </div> -->
 
-              <div class="commentcontent">
-                <p id="commentdesc">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et
-                  massa mi. Aliquam in hendrerit urna. Pellentesque sit amet
-                  sapien fringilla, mattis ligula consectetur, ultrices mauris.
-                </p>
-                <div class="additions1">
-                  <p><i class="fa-solid fa-thumbs-up"></i></p>
-                  <p><i class="fa-solid fa-thumbs-down"></i></p>
-                  <p class="reply-btn">Reply</p>
-                </div>
-                
-                <div class="reply-section">
-  <form action="">
-    <input type="text" placeholder="Reply to this comment..." id="replyy"/>
-    <div class="additions">
-      <div class="emogi">
-        <i class="fa-solid fa-face-smile"></i>
-      </div>
-      <div class="decisions">
-        <p class="cancel-reply">Cancel</p>
-        <p class="post-reply">Reply</p>
-      </div>
-    </div>
-  </form>
-</div>
+              <div class="dynamicContent" id="dynamicContent">
 
-
-              </div>
-            </div>
-            <div class="createdcomment">
-              <div class="commenter">
-                <img src="../images/me-removebg-preview.png" alt="" />
-              </div>
-
-              <div class="commentcontent">
-                <p id="commentdesc">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et
-                  massa mi. Aliquam in hendrerit urna. Pellentesque sit amet
-                  sapien fringilla, mattis ligula consectetur, ultrices mauris.
-                </p>
-                <div class="additions1">
-                  <p><i class="fa-solid fa-thumbs-up"></i></p>
-                  <p><i class="fa-solid fa-thumbs-down"></i></p>
-                  <p class="reply-btn">Reply</p>
-                </div>
-                <div class="reply-section">
-  <form action="">
-    <input type="text" placeholder="Reply to this comment..." id="replyy"/>
-    <div class="additions">
-      <div class="emogi">
-        <i class="fa-solid fa-face-smile"></i>
-      </div>
-      <div class="decisions">
-        <p class="cancel-reply">Cancel</p>
-        <p class="post-reply">Reply</p>
-      </div>
-    </div>
-  </form>
-</div>
-              </div>
-            </div>
-            <div class="createdcomment">
-              <div class="commenter">
-                <img src="../images/me-removebg-preview.png" alt="" />
-              </div>
-
-              <div class="commentcontent">
-                <p id="commentdesc">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et
-                  massa mi. Aliquam in hendrerit urna. Pellentesque sit amet
-                  sapien fringilla, mattis ligula consectetur, ultrices mauris.
-                </p>
-                <div class="additions1">
-                  <p><i class="fa-solid fa-thumbs-up"></i></p>
-                  <p><i class="fa-solid fa-thumbs-down"></i></p>
-                  <p class="reply-btn">Reply</p>
-                </div>
-                <div class="reply-section">
-  <form action="">
-    <input type="text" placeholder="Reply to this comment..." id="replyy"/>
-    <div class="additions">
-      <div class="emogi">
-        <i class="fa-solid fa-face-smile"></i>
-      </div>
-      <div class="decisions">
-        <p class="cancel-reply">Cancel</p>
-        <p class="post-reply">Reply</p>
-      </div>
-    </div>
-  </form>
-</div>
-              </div>
-            </div>
-            <div class="createdcomment">
-              <div class="commenter">
-                <img src="../images/me-removebg-preview.png" alt="" />
-              </div>
-
-              <div class="commentcontent">
-                <p id="commentdesc">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et
-                  massa mi. Aliquam in hendrerit urna. Pellentesque sit amet
-                  sapien fringilla, mattis ligula consectetur, ultrices mauris.
-                </p>
-                <div class="additions1">
-                  <p><i class="fa-solid fa-thumbs-up"></i></p>
-                  <p><i class="fa-solid fa-thumbs-down"></i></p>
-                  <p class="reply-btn">Reply</p>
-                </div>
-                <div class="reply-section">
-  <form action="">
-    <input type="text" placeholder="Reply to this comment..." id="replyy"/>
-    <div class="additions">
-      <div class="emogi">
-        <i class="fa-solid fa-face-smile"></i>
-      </div>
-      <div class="decisions">
-        <p class="cancel-reply">Cancel</p>
-        <p class="post-reply">Reply</p>
-      </div>
-    </div>
-  </form>
-</div>
-              </div>
-            </div>
-            <div class="createdcomment">
-              <div class="commenter">
-                <img src="../images/me-removebg-preview.png" alt="" />
-              </div>
-
-              <div class="commentcontent">
-                <p id="commentdesc">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et
-                  massa mi. Aliquam in hendrerit urna. Pellentesque sit amet
-                  sapien fringilla, mattis ligula consectetur, ultrices mauris.
-                </p>
-                <div class="additions1">
-                  <p><i class="fa-solid fa-thumbs-up"></i></p>
-                  <p><i class="fa-solid fa-thumbs-down"></i></p>
-                  <p class="reply-btn">Reply</p>
-                </div>
-                <div class="reply-section">
-  <form action="">
-    <input type="text" placeholder="Reply to this comment..." id="replyy"/>
-    <div class="additions">
-      <div class="emogi">
-        <i class="fa-solid fa-face-smile"></i>
-      </div>
-      <div class="decisions">
-        <p class="cancel-reply">Cancel</p>
-        <p class="post-reply">Reply</p>
-      </div>
-    </div>
-  </form>
-</div>
               </div>
             </div>
           </div>
