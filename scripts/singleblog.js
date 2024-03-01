@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const nondisplayedBlogs = blogInfo.filter(
       (blog1) => blog1.blogid !== Number(blogId)
     );
-
     if (blog) {
       singlblogData.innerHTML = `
             <p style="text-align: start">${blog.blogcategory}</p>
