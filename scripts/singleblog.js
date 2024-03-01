@@ -7,14 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function readIdFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     const blogId = urlParams.get("id");
-    console.log("Blog id from url:", blogId);
-    console.log("Blog details:", blogInfo);
     const blog = blogInfo.find((blog) => blog.blogid === Number(blogId));
     const nondisplayedBlogs = blogInfo.filter(
       (blog1) => blog1.blogid !== Number(blogId)
     );
-
-    console.log(blog);
 
     if (blog) {
       singlblogData.innerHTML = `
