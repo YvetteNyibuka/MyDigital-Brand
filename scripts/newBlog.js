@@ -1,5 +1,5 @@
-const publishedBlogs = JSON.parse(localStorage.getItem("publishedBlogs")) || [];
 
+const publishedBlogs = JSON.parse(localStorage.getItem("publishedBlogs")) || [];
 let nextBlogId = 1;
 
 function savePublishedBlogsToLocalStorage() {
@@ -24,7 +24,6 @@ function addBlog() {
 
   reader.readAsDataURL(image);
   const blogid = nextBlogId++;
-  console.log("Generated blogid:", blogid);
 
   reader.addEventListener("load", () => {
     const imageUrl = reader.result;
@@ -48,3 +47,7 @@ function clearForm() {
   document.getElementById("coverPhoto").value = "";
   tinymce.get("blogContent").setContent("");
 }
+
+// adding comments to each blog
+
+// localStorage.clear();
