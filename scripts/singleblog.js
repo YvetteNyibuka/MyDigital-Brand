@@ -73,35 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-   // create a new comment
-  //  const publishedComments = JSON.parse(localStorage.getItem("Comments")) || [];
-  //  let nextCommentId = 1;
-  //  addComment()
-  //  function saveCommentsToLocalStorage() {
-  //   localStorage.setItem("Comments", JSON.stringify(publishedComments));
-  // }
-  //  function addComment(){
 
-  // const commentingUsername = document.getElementById("userName").value;
-  // const commentMessage = document.getElementById("commentMessage").value;
-  // console.log("Comment", commentMessage);
-  // const commentBtn = document.getElementById("commentBtn");
-
-  // const commentId = nextCommentId++;
-  // publishedComments.push(
-  //  commentId,
-  //  blogId,
-  //  commentMessage,
-  //  commentingUsername,
-  //  )
-  //  saveCommentsToLocalStorage();
-  //  clearForm1();
-  //  }
-
-  //  function clearForm1() {
-  //  document.getElementById("userName").value = "";
-  //  document.getElementById("commentMessage").value = "";
-  //  }
 
   const commentBtn = document.getElementById("commentBtn");
   let nextCommentId = 1
