@@ -4,12 +4,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
   const signupBtn = document.getElementById("signupBtn");
+  const loader = document.querySelector(".loaderOverlay");
+  const successMessage = document.getElementById("successMessage");
 
-  form.addEventListener("submit", function (event) {
+  function showLoader() {
+    loader.style.display = "flex";
+  }
+
+  function hideLoader() {
+    loader.style.display = "none";
+  }
+
+  form.addEventListener("submit", async function (event) {
     event.preventDefault();
     let isValid = true;
 
-    // Validate full name
     const nameRegex = /^[a-zA-Z]+$/;
     if (!nameRegex.test(fullnameInput.value)) {
       isValid = false;
@@ -18,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
       hideError(fullnameInput);
     }
 
-    // Validate email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(emailInput.value)) {
       isValid = false;
@@ -27,8 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
       hideError(emailInput);
     }
 
-    // Validate password (you can reuse the existing password validation code)
-    // Validate password
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!passwordRegex.test(passwordInput.value)) {
@@ -40,12 +46,59 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       hideError(passwordInput);
     }
-    // Enable or disable the submit button based on validation
-    signupBtn.disabled = !isValid;
 
-    // Prevent form submission if not valid
     if (!isValid) {
-      event.preventDefault();
+      return;
+    }
+
+    const formData = {
+      names: fullnameInput.value,
+      email: emailInput.value,
+      password: passwordInput.value,
+    };
+
+    try {
+      showLoader();
+
+      const response = await fetch(
+        "https://cyan-powerful-chick.cyclic.app/api/v1/users/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        if (response.status == 400) {
+          successMessage.textContent = responseData.message || "Email already registered";
+        } else if (response.status == 500) {
+          successMessage.textContent = responseData.message || "Check your internet connection";
+        }
+        successMessage.style.display = "block"; 
+      } else {
+        if (responseData && responseData.message) {
+          successMessage.textContent = responseData.message;
+          successMessage.style.display = "block"; 
+          console.log('response: ', responseData);
+        }
+
+        fullnameInput.value = "";
+        emailInput.value = "";
+        passwordInput.value = "";
+
+        setTimeout(() => {
+          window.location.href = "./login.html";
+        }, 2000); 
+      }
+
+      hideLoader();
+    } catch (error) {
+      console.error("Error:", error);
+      hideLoader();
     }
   });
 

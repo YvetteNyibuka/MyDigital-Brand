@@ -3,12 +3,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
   const submitBtn = document.getElementById("loginBtn");
+  const loader = document.querySelector(".loaderOverlay");
+  const successMessage = document.getElementById("successMessage");
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
+  function showLoader() {
+    loader.style.display = "flex";
+  }
+
+  function hideLoader() {
+    loader.style.display = "none";
+  }
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault(); // Prevent default form submission
+
     let isValid = true;
-
-    // Validate email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(emailInput.value)) {
       isValid = false;
@@ -17,25 +26,58 @@ document.addEventListener("DOMContentLoaded", function () {
       hideError(emailInput);
     }
 
-    // Validate password
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(passwordInput.value)) {
-      isValid = false;
-      showError(
-        passwordInput,
-        "Password should be 8 characters with uppercase, lowercase, numbers, and special characters."
-      );
-    } else {
-      hideError(passwordInput);
-    }
-
-    // Enable or disable the submit button based on validation
     submitBtn.disabled = !isValid;
-
-    // Prevent form submission if not valid
     if (!isValid) {
-      event.preventDefault();
+      return;
+    }
+    const loginData = {
+      email: emailInput.value,
+      password: passwordInput.value
+    };
+
+    try {
+      showLoader();
+
+      const response = await fetch(
+        "https://cyan-powerful-chick.cyclic.app/api/v1/users/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginData),
+        }
+      );
+
+      if (!response.ok) {
+        const returnData = await response.json();
+        if (response.status == 400) {
+          successMessage.textContent = returnData.message || "Bad Request";
+        } else if (response.status == 500) {
+          successMessage.textContent =
+            returnData.message || "Something went wrong";
+        }
+        successMessage.style.display = "block"; 
+      } else {
+        const returnData = await response.json();
+        successMessage.textContent = "Successfully logged in"; 
+        successMessage.style.display = "block";
+
+        localStorage.setItem("loggedUser", JSON.stringify(returnData));
+
+        setTimeout(() => {
+          if (returnData.user.role == "admin") {
+            window.location.href = "../pages/adminPannel.html";
+          } else {
+            window.location.href = "../index.html";
+          }
+        }, 2000); 
+      }
+
+      hideLoader();
+    } catch (err) {
+      console.log("Error: ", err);
+      hideLoader();
     }
   });
 
