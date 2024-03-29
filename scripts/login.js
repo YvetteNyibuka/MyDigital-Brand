@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const passwordInput = document.getElementById("password");
   const submitBtn = document.getElementById("loginBtn");
   const loader = document.querySelector(".loaderOverlay");
-  const successMessage = document.getElementById("successMessage");
 
   function showLoader() {
     loader.style.display = "flex";
@@ -15,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   form.addEventListener("submit", async function (event) {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); 
 
     let isValid = true;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -37,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       showLoader();
-
       const response = await fetch(
         "https://cyan-powerful-chick.cyclic.app/api/v1/users/login",
         {
@@ -51,27 +49,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (!response.ok) {
         const returnData = await response.json();
-        if (response.status == 400) {
-          successMessage.textContent = returnData.message || "Bad Request";
-        } else if (response.status == 500) {
-          successMessage.textContent =
-            returnData.message || "Something went wrong";
+        if (response.status == 400 || response.status == 500) {
+          Toastify({
+            text: `${returnData.message}`,
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            position: "left",
+            stopOnFocus: true,
+            backgroundColor: "red",
+            onClick: function () { }
+          }).showToast();
         }
-        successMessage.style.display = "block"; 
       } else {
         const returnData = await response.json();
-        successMessage.textContent = "Successfully logged in"; 
-        successMessage.style.display = "block";
+         Toastify({
+          text: `${returnData.message}`,
+          duration: 3000,
+          destination: "https://github.com/apvarun/toastify-js",
+          newWindow: true,
+          close: true,
+          gravity: "top",
+          position: "left",
+          stopOnFocus: true,
+          backgroundColor: "green",
+          onClick: function () { }
+        }).showToast();
 
         localStorage.setItem("loggedUser", JSON.stringify(returnData));
-
         setTimeout(() => {
           if (returnData.user.role == "admin") {
             window.location.href = "../pages/adminPannel.html";
           } else {
             window.location.href = "../index.html";
           }
-        }, 2000); 
+        }, 3000); 
       }
 
       hideLoader();

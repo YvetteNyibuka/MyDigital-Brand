@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const passwordInput = document.getElementById("password");
   const signupBtn = document.getElementById("signupBtn");
   const loader = document.querySelector(".loaderOverlay");
-  const successMessage = document.getElementById("successMessage");
 
   function showLoader() {
     loader.style.display = "flex";
@@ -59,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       showLoader();
-
       const response = await fetch(
         "https://cyan-powerful-chick.cyclic.app/api/v1/users/register",
         {
@@ -73,16 +71,34 @@ document.addEventListener("DOMContentLoaded", function () {
       const responseData = await response.json();
 
       if (!response.ok) {
-        if (response.status == 400) {
-          successMessage.textContent = responseData.message || "Email already registered";
-        } else if (response.status == 500) {
-          successMessage.textContent = responseData.message || "Check your internet connection";
+        if (response.status == 409 || response.status == 500) {
+          Toastify({
+            text: `${responseData.message}`,
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            position: "left",
+            stopOnFocus: true,
+            backgroundColor: "red",
+            onClick: function () { }
+          }).showToast();
         }
-        successMessage.style.display = "block"; 
       } else {
         if (responseData && responseData.message) {
-          successMessage.textContent = responseData.message;
-          successMessage.style.display = "block"; 
+          Toastify({
+            text: `${responseData.message}`,
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            position: "left",
+            stopOnFocus: true,
+            backgroundColor: "green",
+            onClick: function () { }
+          }).showToast();          
           console.log('response: ', responseData);
         }
 
@@ -92,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(() => {
           window.location.href = "./login.html";
-        }, 2000); 
+        }, 3000); 
       }
 
       hideLoader();

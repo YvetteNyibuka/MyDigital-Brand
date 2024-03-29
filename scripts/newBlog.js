@@ -6,8 +6,8 @@ async function addBlog() {
   const image = coverPhoto.files[0];
 
   if (!image) {
-    console.error("No cover image selected");
-    return; // Exit function if no cover image is selected
+      console.error("No cover image selected");
+      return; 
   }
 
   console.log("title: ", blogTitle);
@@ -19,8 +19,8 @@ async function addBlog() {
 
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
   if (!loggedUser || !loggedUser.token) {
-    console.error("Invalid or missing token");
-    return; 
+      console.error("Invalid or missing token");
+      return; 
   }
   const token = loggedUser.token;
 
@@ -32,22 +32,80 @@ async function addBlog() {
   formData.append("coverImage", image);
 
   try {
-    const newBlog = await fetch("https://cyan-powerful-chick.cyclic.app/api/v1/blogs", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-      },
-      body: formData,
-    });
-    const returnedBlog = await newBlog.json();
-    console.log("Created new blog", returnedBlog);
-  document.getElementById("blogcategory").value = "";
-  document.getElementById("author").value = "";
-  document.getElementById("blogTitle").value = "";
-  tinymce.get("blogContent").setContent("");
-  coverPhoto.value = ""; 
-   
+      const newBlog = await fetch("https://cyan-powerful-chick.cyclic.app/api/v1/blogs", {
+          method: "POST",
+          headers: {
+              "Authorization": `Bearer ${token}`,
+          },
+          body: formData,
+      });
+      const returnedBlog = await newBlog.json();
+      console.log("Created new blog", returnedBlog);
+
+      if(!newBlog.ok){
+        if (newBlog.status == 400) {
+          Toastify({
+            text: `${returnedBlog.message}`,
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", 
+            position: "left", 
+            stopOnFocus: true, 
+            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+            onClick: function(){} 
+        }).showToast();
+          
+        } else if (newBlog.status == 500) {
+          Toastify({
+            text: `${returnedBlog.message}`,
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", 
+            position: "left", 
+            stopOnFocus: true, 
+            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+            onClick: function(){} 
+        }).showToast();
+        }
+      } else{
+      Toastify({
+          text: "Blog created successfully",
+          duration: 3000,
+          destination: "https://github.com/apvarun/toastify-js",
+          newWindow: true,
+          close: true,
+          gravity: "top", 
+          position: "left", 
+          stopOnFocus: true, 
+          backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+          onClick: function(){} 
+      }).showToast();
+      
+      document.getElementById("blogcategory").value = "";
+      document.getElementById("author").value = "";
+      document.getElementById("blogTitle").value = "";
+      tinymce.get("blogContent").setContent("");
+      coverPhoto.value = ""; 
+    }
   } catch (error) {
-    console.error("Error creating blog:", error);
+      console.error("Error creating blog:", error);
+
+      Toastify({
+          text: "Error creating blog",
+          duration: 3000,
+          destination: "https://github.com/apvarun/toastify-js",
+          newWindow: true,
+          close: true,
+          gravity: "top", 
+          position: "left", 
+          stopOnFocus: true, 
+          backgroundColor: "linear-gradient(to right, #ff6a00, #ee0979)",
+          onClick: function(){} 
+      }).showToast();
   }
 }
+
