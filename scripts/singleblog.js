@@ -1,21 +1,49 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Displaying relevant single blog
+document.addEventListener("DOMContentLoaded", async function () {
   let singlblogData = document.getElementById("blogdetails1");
   const blogInfo = JSON.parse(localStorage.getItem("publishedBlogs")) || [];
 
-  readIdFromUrl();
-  function readIdFromUrl() {
+  await readIdFromUrl();
+var currentblog;
+
+  async function readIdFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     const blogId = urlParams.get("id");
-    const blog = blogInfo.find((blog) => blog.blogid === Number(blogId));
-    const nondisplayedBlogs = blogInfo.filter(
-      (blog1) => blog1.blogid !== Number(blogId)
-    );
-    if (blog) {
+
+  // Fetch blogs from server
+  async function fetchBlog() {
+    const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+    if (!loggedUser || !loggedUser.token) {
+      console.error("Invalid or missing token");
+      return;
+    }
+    const token = loggedUser.token;
+
+    try {
+      const response = await fetch(`https://cyan-powerful-chick.cyclic.app/api/v1/blogs/${blogId}`, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch blog");
+      }
+
+      const data = await response.json();
+      currentblog = data.data;
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
+    }
+  }
+  await fetchBlog()
+console.log("================================================", currentblog);
+  
+    if (currentblog.singleBlog) {
       singlblogData.innerHTML = `
-            <p style="text-align: start">${blog.blogcategory}</p>
+            <p style="text-align: start">${currentblog.singleBlog?.category}</p>
       <h1 id="blogtitlee">
-        ${blog.blogTitle}
+        ${currentblog.singleBlog?.title}
       </h1>
       <div class="writer">
         <img
@@ -24,29 +52,27 @@ document.addEventListener("DOMContentLoaded", function () {
           height="5%"
           width="5%"
         />
-        <p>${blog.author}|February 20 2024|3 mins read</p>
+        <p>${currentblog.singleBlog?.author}|February 20 2024|3 mins read</p>
       </div>
-      <img src="${blog.image}" alt="" id="blogcoverimg" />
+      <img src="${currentblog.singleBlog?.coverImage}" alt="" id="blogcoverimg" />
       <div class="fullblogdescription">
         <div class="currentdesc">
           <h1 id="blogtitlee">
-           ${blog.blogTitle}
+           ${currentblog.singleBlog?.title}
           </h1>
 
           <p id="blgdesc">
-          ${blog.blogContent}
+          ${currentblog.singleBlog?.description}
           </p>
-          <h1 id="blogtitlee">
-            ${blog.blogTitle}
-          </h1>
-          <p id="blgdesc">
-          ${blog.blogContent}  
       </div>
 
 
       `;
     }
   }
+
+  // fetching all blog posts
+  
   // Display other blogs
   const urlParams = new URLSearchParams(window.location.search);
   const blogId = urlParams.get("id");
@@ -76,37 +102,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   const commentBtn = document.getElementById("commentBtn");
-  let nextCommentId = 1
-  const publishedComments = JSON.parse(localStorage.getItem("Comments")) || [];
-  console.log("single blogId", blogId);
-  commentBtn.addEventListener("click", () => {
-  const commentingUsername = document.getElementById("userName").value;
-  const commentMessage = document.getElementById("commentMessage").value;
-  const commentId  = nextCommentId++;
+  const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+  const token = loggedUser.token;
+
+  console.log("single blogId", currentblog);
+  commentBtn.addEventListener("click", async () => {
+  const Message = document.getElementById("message").value;
+  
+  if (!loggedUser || !loggedUser.token) {
+      console.error("Invalid or missing token");
+      return; 
+  }
 
   const newComment = 
     {
-      username: commentingUsername,
-      message: commentMessage,
-      commentId: commentId,
-      currentblogId: blogId
+      commentMessage: Message
     }
 
+try{
+  const commentResponse = await fetch(`https://cyan-powerful-chick.cyclic.app/api/v1/blogs/${blogId}/comments`, {
+          method: "POST",
+          headers: {
+              "Authorization": `Bearer ${token}`,
+              "Content-Type": "application/json" 
+          },
+          body: JSON.stringify(newComment),
+      });
+      if(commentResponse.ok){
+        console.log("comentscreated successfully", commentResponse.data);
+        window.location.reload();
+      }
 
-    publishedComments.push(newComment);
-    localStorage.setItem("Comments", JSON.stringify(publishedComments));
+}catch(e){
+console.log(e);
+}
+
   });
  
-  console.log("comments", publishedComments);
-
-   for(let i = 0; i<publishedComments.length-1; i++){
-      if(blogId === publishedComments[i].currentblogId){
+  console.log("comments", currentblog);
+let allComments = currentblog?.singleBlogComments;
+   for(let i = 0; i<allComments?.length-1; i++){
         const commentsNumber = document.getElementById("commentsNumber");
         const createdComment = document.getElementById("dynamicContent");
         createdComment.innerHTML += `
         <div class="commentcontent">
         <p id="commentdesc">
-       ${publishedComments[i].message}
+       ${allComments[i].commentMessage}
         </p>
         <div class="additions1">
           <p><i class="fa-solid fa-thumbs-up"></i></p>
@@ -131,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       </div>`
-      }
+      
    }
 
   const replyButtons = document.querySelectorAll(".reply-btn");

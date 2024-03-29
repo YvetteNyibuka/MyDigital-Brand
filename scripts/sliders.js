@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
 
   const form = document.querySelector("#contactForm");
   const fullNameInput = document.getElementById("full-names");
@@ -77,69 +77,111 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // blogs rendering
-  const publishedBlogs =
-    JSON.parse(localStorage.getItem("publishedBlogs")) || [];
-  console.log("all blogs", publishedBlogs);
+  // Fetch blogs from server
 
-  publishedBlogs.forEach((blog, index) => {
-    const blogCard = document.getElementById("blogs-wrapper");
-    blogCard.innerHTML += ` <div class="blog-card" id="blog-card">
-                      <div class="blog-img" id="blog-img">
-                  <img src=${blog.image} alt="">
-                 </div>
-          <div class="blog-descrption">
-            <p id="blogdescc">${blog.blogContent.slice(
-              0,
-              100
-            )}... <a id="leanmore" href="./pages/singleblog.html?id=${blog.blogid}">Learn More</a></button>
-            </p>
-          </div>
-          <div class="blog-info">
-            <p id="author1">${blog.author}</p>
-            <p>on 19 Jan 2024</p>
-          </div>
-          <div class ="blog-statistics">
-            <p>❤️ 120</p>
-            <p>💬 50</p>
-            <p>👁️ 1050</p>
-          </div>
-        </div>
-        </div>
-        `;
-  });
+  async function fetchBlogs() {
+    const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+    if (!loggedUser || !loggedUser.token) {
+      console.error("Invalid or missing token");
+      return;
+    }
+    const token = loggedUser.token;
 
-  //blog sliderssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-  let currentSlideup = 0;
+    try {
+      const response = await fetch("https://cyan-powerful-chick.cyclic.app/api/v1/blogs", {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        }
+      });
 
-  function showSlide1(n) {
-    const blogElement = document.querySelectorAll(".blog-card");
-    const totalSlides = blogElement.length;
+      if (!response.ok) {
+        throw new Error("Failed to fetch blogs");
+      }
 
-    blogElement.forEach((element) => {
-      element.style.display = "none";
-    });
-
-    currentSlideup = (n + totalSlides) % totalSlides;
-
-    for (let i = 0; i < 4; i++) {
-      const index = (currentSlideup + i) % totalSlides;
-      blogElement[index].style.display = "flex";
+      const data = await response.json();
+      // console.log("Got blog data", data);
+      renderBlogs(data);
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
     }
   }
 
-  function nextSlide1() {
-    showSlide1(currentSlideup + 1);
+
+  await fetchBlogs()
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 
-  function prevSlide1() {
-    showSlide1(currentSlideup - 1);
+  // Render blogs
+  function renderBlogs(blogs) {
+    const blogCardContainer = document.getElementById("blogs-wrapper");
+    blogCardContainer.innerHTML = ""; 
+    console.log("================================", blogs?.data);
+    blogs?.data?.forEach(blog => {
+      blogCardContainer.innerHTML+= `
+        <div class="blog-card">
+          <div class="blog-img">
+            <img src="${blog?.coverImage}" alt="">
+          </div>
+          <div class="blog-description">
+            <p>${blog?.description?.slice(0, 100)}... <a href="./pages/singleblog.html?id=${blog?._id}">Learn More</a></p>
+          </div>
+          <div class="blog-info">
+            <p>${blog?.author ? blog?.author :'Yvette'}</p>
+            <p>on ${(formatDate(blog?.createdAt))}</p>
+          </div>
+          <div class="blog-statistics">
+            <p>❤️ ${blog?.likes}</p>
+            <p>💬 ${blog?.comments?.length}</p>
+          </div>
+        </div>
+      `;
+      // blogCardContainer.insertAdjacentHTML("beforeend", blogCard);
+      // console.log(blogCard);
+
+    });
   }
 
-  showSlide1(currentSlideup);
 
-  const nextBtn = document.querySelector(".nextBtn"); 
-  const prevBtn = document.querySelector(".prevBtn"); 
-  nextBtn.addEventListener("click", nextSlide1); 
-  prevBtn.addEventListener("click", prevSlide1); 
+
+  // Blog slider
+  let currentSlide = 0;
+
+  function showSlide(n) {
+    const blogCards = document.querySelectorAll(".blog-card");
+    const totalSlides = blogCards.length;
+
+    blogCards.forEach(card => {
+      card.style.display = "none";
+    });
+
+    currentSlide = (n + totalSlides) % totalSlides;
+
+    for (let i = 0; i < 4; i++) {
+      const index = (currentSlide + i) % totalSlides;
+      blogCards[index].style.display = "flex";
+    }
+  }
+
+  function nextSlide() {
+    showSlide(currentSlide + 1);
+  }
+
+  function prevSlide() {
+    showSlide(currentSlide - 1);
+  }
+
+  showSlide(currentSlide);
+
+  const nextBtn = document.querySelector(".nextBtn");
+  const prevBtn = document.querySelector(".prevBtn");
+  nextBtn.addEventListener("click", nextSlide);
+  prevBtn.addEventListener("click", prevSlide);
+
 });
