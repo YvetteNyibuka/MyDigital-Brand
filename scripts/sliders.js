@@ -80,19 +80,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Fetch blogs from server
 
   async function fetchBlogs() {
-    const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
-    if (!loggedUser || !loggedUser.token) {
-      console.error("Invalid or missing token");
-      return;
-    }
-    const token = loggedUser.token;
-
     try {
       const response = await fetch("https://mybrand-be-rs6b.onrender.com/api/v1/blogs", {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        }
+        method: "GET"
       });
 
       if (!response.ok) {
@@ -119,37 +109,89 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   // Render blogs
-  function renderBlogs(blogs) {
-    const blogCardContainer = document.getElementById("blogs-wrapper");
-    blogCardContainer.innerHTML = ""; 
-    console.log("================================", blogs?.data);
-    blogs?.data?.forEach(blog => {
-      blogCardContainer.innerHTML+= `
-        <div class="blog-card">
-          <div class="blog-img">
-            <img src="${blog?.coverImage}" alt="">
-          </div>
-          <div class="blog-description">
-            <p>${blog?.description?.slice(0, 100)}... <a href="./pages/singleblog.html?id=${blog?._id}">Learn More</a></p>
-          </div>
-          <div class="blog-info">
-            <p>${blog?.author ? blog?.author :'Yvette'}</p>
-            <p>on ${(formatDate(blog?.createdAt))}</p>
-          </div>
-          <div class="blog-statistics">
-            <p><i class="fa-regular fa-heart"></i> ${blog?.likes}</p>
-            <p>💬 ${blog?.comments?.length}</p>
-          </div>
+  // Render blogs
+function renderBlogs(blogs) {
+  const blogCardContainer = document.getElementById("blogs-wrapper");
+  blogCardContainer.innerHTML = ""; 
+  const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+  const userId = loggedUser?.user?.id;
+
+  // In your renderBlogs function
+  blogs?.data?.forEach(blog => {
+    blogCardContainer.innerHTML += `
+      <div class="blog-card">
+        <div class="blog-img">
+          <img src="${blog?.coverImage}" alt="">
         </div>
-      `;
-      // blogCardContainer.insertAdjacentHTML("beforeend", blogCard);
-      // console.log(blogCard);
-
-    });
+        <div class="blog-description">
+          <p>${blog?.description?.slice(0, 100)}... <a href="./pages/singleblog.html?id=${blog?._id}">Learn More</a></p>
+        </div>
+        <div class="blog-info">
+          <p>${blog?.author ? blog?.author : 'Yvette'}</p>
+          <p>on ${(formatDate(blog?.createdAt))}</p>
+        </div>
+        <div class="blog-statistics">
+          <p>
+          <button style="background-color: white; border: none;" class="like-button" data-blog-id="${blog?._id}" data-user-id="${userId}">
+          ${blog?.likes?.some(like => like.userId === userId) ? 
+            `<img src="https://i.pinimg.com/736x/15/93/f0/1593f08d866e5cf9356f143ecbf3accb.jpg" style="height: 20px; width: 20px;" alt="" />` :
+            `<img src="https://img.freepik.com/premium-vector/like-heart-symbol-icon_165079-3631.jpg" style="height: 20px; width: 20px;" alt="" />`
+          }
+          </button>
+           ${blog?.likes?.length}</p>
+          <p>💬 ${blog?.comments?.length}</p>
+        </div>
+      </div>
+    `;
+  });
+  
+  
+blogCardContainer.addEventListener('click', function(event) {
+  // Use closest to find the nearest ancestor that is a like button
+  const likeButton = event.target.closest('.like-button');
+  if (likeButton) {
+     const blogId = likeButton.getAttribute('data-blog-id');
+     const userId = likeButton.getAttribute('data-user-id');
+     addLike(blogId, userId);
   }
+ });
+}
 
-
-
+async function addLike(blogId, userId) {
+  const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+  if (!loggedUser || !loggedUser.token) {
+     console.error("Invalid or missing token");
+     return;
+  }
+  const token = loggedUser.token;
+  const newLike = {
+     blogId: blogId,
+     userId: userId,
+     isLiked: true
+  };
+  try {
+     const likeResponse = await fetch(`https://mybrand-be-rs6b.onrender.com/api/v1/blogs/${blogId}/likes`, {
+       method: 'POST',
+       headers: {
+         "Authorization": `Bearer ${token}`,
+         'Content-Type': 'application/json'
+       },
+       body: JSON.stringify(newLike)
+     });
+     
+     if (!likeResponse.ok) {
+       throw new Error("Failed to add like to blogs");
+     }
+ 
+     console.log("Like added successfully");
+     // Refresh the page or do something else upon successful like addition
+     window.location.reload();
+    
+  } catch (e) {
+     console.error("Error adding like:", e);
+  }
+ }
+ 
   // Blog slider
   let currentSlide = 0;
 
