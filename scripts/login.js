@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       showLoader();
       const response = await fetch(
-        "https://cyan-powerful-chick.cyclic.app/api/v1/users/login",
+        "https://mybrand-be-rs6b.onrender.com/api/v1/users/login",
         {
           method: "POST",
           headers: {

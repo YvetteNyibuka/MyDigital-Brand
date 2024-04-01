@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const token = loggedUser.token;
 
     try {
-      const response = await fetch("https://cyan-powerful-chick.cyclic.app/api/v1/blogs", {
+      const response = await fetch("https://mybrand-be-rs6b.onrender.com/api/v1/blogs", {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             <p>on ${(formatDate(blog?.createdAt))}</p>
           </div>
           <div class="blog-statistics">
-            <p>❤️ ${blog?.likes}</p>
+            <p><i class="fa-regular fa-heart"></i> ${blog?.likes}</p>
             <p>💬 ${blog?.comments?.length}</p>
           </div>
         </div>

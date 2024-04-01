@@ -19,7 +19,7 @@ var currentblog;
     const token = loggedUser.token;
 
     try {
-      const response = await fetch(`https://cyan-powerful-chick.cyclic.app/api/v1/blogs/${blogId}`, {
+      const response = await fetch(`https://mybrand-be-rs6b.onrender.com/api/v1/blogs/${blogId}`, {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -49,8 +49,8 @@ console.log("================================================", currentblog);
         <img
           src="../images/me-removebg-preview.png"
           alt=""
-          height="5%"
-          width="5%"
+          height="4%"
+          width="4%"
         />
         <p>${currentblog.singleBlog?.author}|February 20 2024|3 mins read</p>
       </div>
@@ -72,31 +72,66 @@ console.log("================================================", currentblog);
   }
 
   // fetching all blog posts
+  var allBlogs = [];
+  async function fetchBlogs() {
+    const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+    if (!loggedUser || !loggedUser.token) {
+      console.error("Invalid or missing token");
+      return;
+    }
+    const token = loggedUser.token;
+
+    try {
+      const response = await fetch("https://mybrand-be-rs6b.onrender.com/api/v1/blogs", {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch blogs");
+      }
+
+      const blogs = await response.json();
+      allBlogs.push(blogs?.data)
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
+    }
+  }
   
+  await fetchBlogs();
+
+  // console.log("+++++++++++++++++++++++++++++++++++++++++++++++", allBlogs);
   // Display other blogs
   const urlParams = new URLSearchParams(window.location.search);
   const blogId = urlParams.get("id");
-  const nondisplayedBlogs = blogInfo.filter(
-    (blog1) => blog1.blogid !== Number(blogId)
+
+  const nondisplayedBlogs = allBlogs.map(
+    (blog1) => blog1.filter(blog => blog._id !== blogId)
   );
+  // console.log("////////////////////////////////////////", nondisplayedBlogs);
   if (nondisplayedBlogs.length > 0) {
     const otherBlogs = document.getElementById("otheravailableblogs");
 
-    nondisplayedBlogs.forEach((blog1, index) => {
+    nondisplayedBlogs.map(blog => {
+      blog.map(blog => {
+      console.log("dfshdgygntrfbewsagsxhctvhynjjuk", blog);
       otherBlogs.innerHTML += `
           <div class="available1">
             <div class="picture1">
-              <img src="${blog1.image}" alt="" width = "75%" height = "45%" />
+              <img src="${blog?.coverImage}" alt="" width = "75%" height = "45%" />
             </div>
             <div class="description1">
-              <p style="color: #767676">${blog1.blogcategory}</p>
+              <p style="color: #767676">${blog?.category}</p>
               <p id="avadesc">
-                ${blog1.blogContent.slice(0, 100)}...
+                ${blog?.description.slice(0, 100)}...
               </p>
             </div>
           </div>
     `;
-    });
+    })
+  })
   }
 
 
@@ -120,7 +155,7 @@ console.log("================================================", currentblog);
     }
 
 try{
-  const commentResponse = await fetch(`https://cyan-powerful-chick.cyclic.app/api/v1/blogs/${blogId}/comments`, {
+  const commentResponse = await fetch(`https://mybrand-be-rs6b.onrender.com/api/v1/blogs/${blogId}/comments`, {
           method: "POST",
           headers: {
               "Authorization": `Bearer ${token}`,
@@ -141,36 +176,15 @@ console.log(e);
  
   console.log("comments", currentblog);
 let allComments = currentblog?.singleBlogComments;
-   for(let i = 0; i<allComments?.length-1; i++){
+   for(let i = 0; i<allComments?.length; i++){
         const commentsNumber = document.getElementById("commentsNumber");
         const createdComment = document.getElementById("dynamicContent");
         createdComment.innerHTML += `
         <div class="commentcontent">
+        <p> <i class="fa-solid fa-user"></i> ${allComments[i].username} </p>
         <p id="commentdesc">
        ${allComments[i].commentMessage}
         </p>
-        <div class="additions1">
-          <p><i class="fa-solid fa-thumbs-up"></i></p>
-          <p><i class="fa-solid fa-thumbs-down"></i></p>
-          <p class="reply-btn">Reply</p>
-        </div>
-        
-        <div class="reply-section">
-        <form action="">
-<input type="text" placeholder="Reply to this comment..." id="replyy"/>
-<div class="additions">
-<div class="emogi">
-<i class="fa-solid fa-face-smile"></i>
-</div>
-<div class="decisions">
-<p class="cancel-reply">Cancel</p>
-<p class="post-reply">Reply</p>
-</div>
-</div>
-        </form>
-         </div>
-
-
       </div>`
       
    }
