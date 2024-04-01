@@ -32,7 +32,7 @@ async function addBlog() {
   formData.append("coverImage", image);
 
   try {
-      const newBlog = await fetch("https://cyan-powerful-chick.cyclic.app/api/v1/blogs", {
+      const newBlog = await fetch("https://mybrand-be-rs6b.onrender.com/api/v1/blogs", {
           method: "POST",
           headers: {
               "Authorization": `Bearer ${token}`,

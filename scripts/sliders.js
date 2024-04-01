@@ -109,7 +109,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   // Render blogs
-  // Render blogs
 function renderBlogs(blogs) {
   const blogCardContainer = document.getElementById("blogs-wrapper");
   blogCardContainer.innerHTML = ""; 
