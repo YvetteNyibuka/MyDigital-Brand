@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then((html) => {
               updateBlogSection.innerHTML = html;
               const updateForm = document.getElementById("blogForm1");
-              updateForm.setAttribute("blogId", blog._id); // Store blog ID in the form
+              updateForm.setAttribute("blogId", blog._id);
               updateForm.elements["category"].value = blog.category;
               updateForm.elements["author"].value = blog.author;
               updateForm.elements["title"].value = blog.title;
@@ -196,7 +196,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Listen for submit event on update form
   document.addEventListener("submit", function (event) {
       if (event.target.id === "blogForm1") {
           event.preventDefault();
@@ -233,7 +232,6 @@ document.addEventListener("DOMContentLoaded", function () {
           })
           .then(data => {
               console.log("Blog updated successfully:", data);
-              // Additional actions if needed
           })
           .catch(error => {
               console.error("Error updating blog:", error);

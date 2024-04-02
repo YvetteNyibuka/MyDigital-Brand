@@ -29,7 +29,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="../styles/style.css" />
      <link rel="stylesheet" href="./styles/about.css">
      <link rel="stylesheet" href="./styles/services.css">
@@ -661,12 +661,15 @@
        </section>
 
   <section id="blogs">
+   
  <h1 id="sectiontitle">Blogs</h1>
  <p id="blogIntro">
     Dive into my world of insights and discoveries in the ever-evolving realm of technology. In my blog, I share experiences, industry trends, and thought-provoking perspectives on various aspects of software development, innovation, and the digital landscape. Join me on this journey of exploration and stay updated on the latest trends, best practices, and the occasional deep dive into the fascinating world of coding and technology.
  </p>
       <div class="blogs-wrapper" id="blogs-wrapper">
-       
+        <div class="loaderOverlay">
+          <div class="loader"></div>
+        </div>
       </div>
         <div class="sliders">
     <button  id="sliderdiv" class="prevBtn" ><i class="fa-solid fa-angle-left slide"></i></button>
@@ -777,9 +780,7 @@
     </div>
     <script src="./scripts/sliders.js"></script>  
     <script src="../scripts/script.js"></script>
-
-
-
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script></script>
   </body>
 </html>

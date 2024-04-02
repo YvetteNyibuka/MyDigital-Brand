@@ -55,7 +55,6 @@ fetchQuerries();
       `;
     });
   }
-// Fetch users from server
 let allUsers = [];
 async function fetchUsers() {
     const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));

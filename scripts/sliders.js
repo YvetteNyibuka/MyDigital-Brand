@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   const subjectInput = document.getElementById("subject");
   const messageInput = document.getElementById("message");
   const submitBtn = document.getElementById("contactbtn");
+  const loader = document.querySelector(".loaderOverlay");
+
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -77,10 +79,18 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
+  function showLoader() {
+    loader.style.display = "flex";
+  }
+
+  function hideLoader() {
+    loader.style.display = "none";
+  }
   // Fetch blogs from server
 
   async function fetchBlogs() {
     try {
+    showLoader()
       const response = await fetch("https://mybrand-be-rs6b.onrender.com/api/v1/blogs", {
         method: "GET"
       });
@@ -92,8 +102,10 @@ document.addEventListener("DOMContentLoaded", async function () {
       const data = await response.json();
       // console.log("Got blog data", data);
       renderBlogs(data);
+      hideLoader();
     } catch (error) {
       console.error("Error fetching blogs:", error);
+      hideLoader();
     }
   }
 
@@ -145,7 +157,6 @@ function renderBlogs(blogs) {
   
   
 blogCardContainer.addEventListener('click', function(event) {
-  // Use closest to find the nearest ancestor that is a like button
   const likeButton = event.target.closest('.like-button');
   if (likeButton) {
      const blogId = likeButton.getAttribute('data-blog-id');
