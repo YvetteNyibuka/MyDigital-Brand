@@ -84,12 +84,13 @@ async function addBlog() {
           backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
           onClick: function(){} 
       }).showToast();
-      
+      window.location.href = "../index.html";
       document.getElementById("blogcategory").value = "";
       document.getElementById("author").value = "";
       document.getElementById("blogTitle").value = "";
       tinymce.get("blogContent").setContent("");
       coverPhoto.value = ""; 
+
     }
   } catch (error) {
       console.error("Error creating blog:", error);
