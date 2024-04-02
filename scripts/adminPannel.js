@@ -13,73 +13,72 @@ document.addEventListener("DOMContentLoaded", function () {
   let blogsSection = document.getElementById("blogs-section");
   let messagesSection = document.getElementById("messages-section");
   let profileSection = document.getElementById("profile-section");
-  // let logoutSection = document.getElementById("logout-section");
   let newBlogBtn = document.getElementById("newBlogBtn");
   let newBlogSection = document.getElementById("new-blog-section");
+  let updateBlogSection = document.getElementById("update-blog-section");
 
   newBlogBtn.addEventListener("click", () => {
-    newBlogSection.innerHTML = "";
-
-    fetch("../pages/newBlog.html")
-      .then((response) => response.text())
-      .then((html) => {
-        newBlogSection.innerHTML = html;
-          tinymce.init({
-            selector: "#blogContent",
-            plugins:
-              "autolink lists link image charmap print preview hr anchor pagebreak",
-            height: 300,
-            branding: false,
-          });
-        showSection(newBlogSection);
-      })
-      .catch((error) => console.error("Error fetching newBlog.html:", error));
+      newBlogSection.innerHTML = "";
+      fetch("../pages/newBlog.html")
+          .then((response) => response.text())
+          .then((html) => {
+              newBlogSection.innerHTML = html;
+              tinymce.init({
+                  selector: "#blogContent",
+                  plugins:
+                      "autolink lists link image charmap print preview hr anchor pagebreak",
+                  height: 300,
+                  branding: false,
+              });
+              showSection(newBlogSection);
+          })
+          .catch((error) =>
+              console.error("Error fetching newBlog.html:", error)
+          );
   });
 
   dashboardLink.addEventListener("click", () => {
-    showSection(dashboardSection);
+      showSection(dashboardSection);
   });
 
   usersLink.addEventListener("click", () => {
-    showSection(usersSection);
+      showSection(usersSection);
   });
 
   blogsLink.addEventListener("click", () => {
-    showSection(blogsSection);
+      showSection(blogsSection);
   });
 
   queriesLink.addEventListener("click", () => {
-    showSection(messagesSection);
+      showSection(messagesSection);
   });
 
   profileLink.addEventListener("click", () => {
-    showSection(profileSection);
+      showSection(profileSection);
   });
 
   logoutLink.addEventListener("click", () => {
-    // showSection(logoutSection);
-    localStorage.removeItem("loggedUser");
-    window.location.href = "../index.html";
+      localStorage.removeItem("loggedUser");
+      window.location.href = "../index.html";
   });
 
   function showSection(section) {
-    dashboardSection.style.display = "none";
-    usersSection.style.display = "none";
-    blogsSection.style.display = "none";
-    messagesSection.style.display = "none";
-    profileSection.style.display = "none";
-    // logoutSection.style.display = "none";
-    // newBlogSection.style.display = "none";
-    newBlogSection.style.display = "block";
-    // newBlogSection.style.backgroundColor = "red";
-    section.style.display = "block";
-    nav.classList.remove("navclose");
+      dashboardSection.style.display = "none";
+      usersSection.style.display = "none";
+      blogsSection.style.display = "none";
+      messagesSection.style.display = "none";
+      profileSection.style.display = "none";
+      newBlogSection.style.display = "block";
+      section.style.display = "block";
+      nav.classList.remove("navclose");
   }
+
   menuicn.addEventListener("click", () => {
-    nav.classList.toggle("navclose");
+      nav.classList.toggle("navclose");
   });
+
   setTimeout(() => {
-    showSection(dashboardSection);
+      showSection(dashboardSection);
   }, 100);
 
   const userDetailsForm = document.getElementById("userDetails");
@@ -88,73 +87,96 @@ document.addEventListener("DOMContentLoaded", function () {
   const cancelBtn = document.getElementById("cancelBtn");
 
   updateBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    userDetailsForm.classList.remove("read-only-mode");
-    updateBtn.style.display = "none";
-    saveBtn.style.display = "inline-block";
-    cancelBtn.style.display = "inline-block";
+      event.preventDefault();
+      userDetailsForm.classList.remove("read-only-mode");
+      updateBtn.style.display = "none";
+      saveBtn.style.display = "inline-block";
+      cancelBtn.style.display = "inline-block";
   });
 
   cancelBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    userDetailsForm.classList.add("read-only-mode");
-    updateBtn.style.display = "inline-block";
-    saveBtn.style.display = "none";
-    cancelBtn.style.display = "none";
+      event.preventDefault();
+      userDetailsForm.classList.add("read-only-mode");
+      updateBtn.style.display = "inline-block";
+      saveBtn.style.display = "none";
+      cancelBtn.style.display = "none";
   });
 
-// Fetch blogs from server
-let allBlogs = [];
-async function fetchBlogs() {
-  try {
-    const response = await fetch("https://mybrand-be-rs6b.onrender.com/api/v1/blogs", {
-      method: "GET"
-    });
+  async function fetchBlogs() {
+      try {
+          const response = await fetch(
+              "https://mybrand-be-rs6b.onrender.com/api/v1/blogs",
+              {
+                  method: "GET",
+              }
+          );
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch blogs");
-    }
+          if (!response.ok) {
+              throw new Error("Failed to fetch blogs");
+          }
 
-    const data = await response.json();
-    allBlogs.push(data);
-    console.log("Got blog data", allBlogs);
-    renderBlogs(data);
-  } catch (error) {
-    console.error("Error fetching blogs:", error);
+          const data = await response.json();
+          renderBlogs(data);
+      } catch (error) {
+          console.error("Error fetching blogs:", error);
+      }
   }
-}
-fetchBlogs();
+  fetchBlogs();
 
-
-  // Render blogs
   function renderBlogs(blogs) {
-    const blogRow = document.getElementById("blogRow");
-    blogRow.innerHTML = ""; 
-    const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
-    const userId = loggedUser?.user?.id;
-  
-    let index= 0;
-    // In your renderBlogs function
-    blogs?.data?.forEach(blog => {
-      blogRow.innerHTML += `
-      <tr>
-      <td>${index+=1}</td>
+      const blogRow = document.getElementById("blogRow");
+      blogRow.innerHTML = "";
+      const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
 
-      <td>${blog?.author}</td>
+      let index = 0;
+      blogs?.data?.forEach((blog) => {
+          blogRow.innerHTML += `
+              <tr>
+                  <td>${index += 1}</td>
+                  <td>${blog?.author}</td>
+                  <td style="display: flex; flex-wrap: wrap;">${blog?.title}</td>
+                  <td>${blog?.likes?.length}</td>
+                  <td>${blog?.comments?.length}</td>
+                  <td>
+                      <button style="border: none; background-color: none;">
+                          <i class="fa-solid fa-trash-can"></i>
+                      </button>
+                      <button style="border: none; background-color: none;" class="updateBtnn">
+                          <i class="fa-regular fa-pen-to-square"></i>
+                      </button>
+                  </td>
+              </tr>
+          `;
+      });
 
-      <td style="display: flex; flex-wrap: wrap;">${blog?.title}</td>
+      queryAndUpdateButtons(); 
+  }
 
-      <td>${blog?.likes?.length}</td>
-
-      <td>${blog?.comments?.length}</td>
-
-      <td>
-        <i class="fa-solid fa-trash-can"></i>
-        <i class="fa-regular fa-pen-to-square"></i>
-      </td>
-      </tr>
-      `;
-    });
-    
+  function queryAndUpdateButtons() {
+      const updateBlogBtns = document.querySelectorAll(".updateBtnn");
+      // console.log("updateBlogBtns:", updateBlogBtns);
+      updateBlogBtns.forEach((updateBlogBtn) => {
+          // console.log("Adding event listener to button:", updateBlogBtn);
+          updateBlogBtn.addEventListener("click", () => {
+              // console.log("editBlogBtnClickeddddddddddddddddddddddddd");
+              updateBlogSection.innerHTML = "";
+              fetch("../pages/updateBlog.html")
+                  .then((response) => response.text())
+                  .then((html) => {
+                      updateBlogSection.innerHTML = html;
+                      tinymce.init({
+                          selector: "#blogContent",
+                          plugins:
+                              "autolink lists link image charmap print preview hr anchor pagebreak",
+                          height: 300,
+                          branding: false,
+                      });
+                      showSection(updateBlogSection);
+                  })
+                  .catch((error) =>
+                      console.error("Error fetching updateBlog.html:", error)
+                  );
+          });
+      });
   }
 });

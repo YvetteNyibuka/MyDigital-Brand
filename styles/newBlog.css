@@ -52,6 +52,15 @@ textarea {
   width: 100%;
   cursor: pointer;
 }
+#updateBlogBtn {
+  padding: 10px;
+  background-color: #ffb400;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  cursor: pointer;
+}
 
 button:hover {
   background-color: #45a049;

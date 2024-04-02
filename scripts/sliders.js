@@ -115,8 +115,7 @@ function renderBlogs(blogs) {
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
   const userId = loggedUser?.user?.id;
 
-  // In your renderBlogs function
-  blogs?.data?.forEach(blog => {
+   blogs?.data?.forEach(blog => {
     blogCardContainer.innerHTML += `
       <div class="blog-card">
         <div class="blog-img">
