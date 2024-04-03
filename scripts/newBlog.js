@@ -10,7 +10,6 @@ async function addBlog() {
       return; 
   }
 
-  console.log("title: ", blogTitle);
   const blogContentHTML = tinymce.get("blogContent").getContent();
 
   const tempElement = document.createElement("div");

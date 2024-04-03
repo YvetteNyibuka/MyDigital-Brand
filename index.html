@@ -763,9 +763,8 @@
       </div>
     </div>
   </section>
-
       </div>
-      <div class="navigation-container">
+      <div class="navigation-container" >
         <i class="fa-solid fa-bars" id="menu"></i>
         <a id="navlink" href="#home"><i class="fa-solid fa-house"></i></a>
         <a id="navlink" href="#about"><i class="fa-solid fa-address-card"></i></a>
@@ -775,7 +774,7 @@
         <a id="navlink" href="#portifolio"><i class="fa-solid fa-briefcase"></i></a>
         <a id="navlink" href="#blogs"><i class="fa-solid fa-blog"></i></a>
         <a id="navlink" href="#contact"><i class="fa-solid fa-comment-sms"></i></a>
-        <a id="navlink" href="./pages/login.html"><i class="fa-solid fa-right-to-bracket"></i></a>
+        <a id="navlink" class="log-in-out" style="display: flex; flex-direction: column; gap: 2rem;"></a>
       </div>
     </div>
     <script>
@@ -865,6 +864,44 @@
     }
   }
 
+  const logInOut = document.querySelector(".log-in-out");
+const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+
+if (loggedUser || loggedUser?.token) {
+    logInOut.innerHTML = `
+        <button style="border:none; background-color:white; width:fit-content;" class="redirect">
+            <img src="https://static-00.iconduck.com/assets.00/user-online-icon-256x256-yulcevhu.png" width="35%" height="35%" style="margin-left:.5rem;" alt="">
+        </button>
+        <button style="border:none; background-color:white;" class="logouthome">
+            <i class="fa-solid fa-right-from-bracket" style="margin-left:.5rem; margin-bottom: 1rem;"></i>
+        </button>`;
+} else {
+    logInOut.innerHTML = `<a href="../pages/login.html" style="text-decoration:none; color:black"><i class="fa-solid fa-right-to-bracket"></i></a>`;
+}
+
+function handleRedirection() {
+    if (loggedUser && loggedUser.user.role == 'admin') {
+        console.log("button clicked");
+        window.location.href = "./pages/adminPannel.html";
+    } else {
+        window.location.href = "/";
+    }
+}
+function homeLogout(){
+  localStorage.removeItem("loggedUser");
+  window.location.href = "/";
+}
+logInOut.addEventListener('click', function(event) {
+    const redirectBtn = event.target.closest('.redirect');
+    const logouthome = event.target.closest('.logouthome');
+    if (redirectBtn) {
+        handleRedirection();
+    }
+    if(logouthome){
+      homeLogout();
+    }
+
+});
 
   // Fetch blogs from server
 
