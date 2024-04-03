@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>single blog</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -26,12 +27,16 @@
     <link rel="stylesheet" href="../styles/singleblog.css" />
   </head>
   <body>
-  <a href="../index.html" style="color: black;"><h1 style="margin: 2rem;"><i class="fa-solid fa-chevron-left"></i>Back</h1></a>
 <div class="singlePage">
+  <div class="loaderOverlay">
+    <div class="loader"></div>
+  </div>
   <div class="singlecontainer">
     <div class="blogdetails1" id="blogdetails1"></div>
+    <div class="additions">
+    </div>
     <div class="commentsection">
-      <h1 id="commentsNumber">5 Comments</h1>
+      <h1 id="commentsNumber"></h1>
       <div class="commentcreation">
         <div class="commentingperson">
           <i class="fa-solid fa-user"></i>
@@ -40,10 +45,7 @@
         <div class="createcomment">
           <form action="">
             <input type="text" placeholder="Add a comment..."  id="message" name="commentMessage"/>
-            <div class="additions">
-              <div class="emogi">
-                <i class="fa-solid fa-face-smile"></i>
-              </div>
+           
               <div class="decisions">
                 <button type="button" style="border:none ; background-color: white;" id="cancelBtn" >Cancel</button>
                 <button type="button" style="border:none ; background-color: white;" id="commentBtn" >Comment</button>
@@ -58,15 +60,17 @@
         </div>
       </div>
     </div>
-       
+    <div class="commentRestblogs" style="display: flex;">     
+      <div class="otheravailableblogs" id="otheravailableblogs">
+        <h2>Other available blogs</h2>
+      </div>
+     </div>   
+  
   </div>
-   <div class="commentRestblogs" style="display: flex;">     
-    <div class="otheravailableblogs" id="otheravailableblogs">
-      <h2>Other available blogs</h2>
-    </div>
-   </div>
+
 </div>
   <script src="../scripts/singleblog.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   </body>
 </html>
 

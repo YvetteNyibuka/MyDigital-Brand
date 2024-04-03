@@ -21,7 +21,7 @@
   flex-wrap: nowrap;
   gap: 0.5rem;
   padding: 20px;
-  width: 100%;
+  width: 94%;
 }
 
 .blog-card {
@@ -56,10 +56,12 @@ a {
   font-weight: bolder;
 }
 
-.blog-descrption {
+.blog-description {
   border-top: 1px solid #eee;
   text-align: start;
   padding: 0 1rem;
+  /* color: red; */
+  font-size: .6rem;
 }
 
 .blog-info {
@@ -73,19 +75,16 @@ a {
 .blog-statistics {
   display: flex;
   text-align: start;
-  gap: 2rem;
+  justify-content: space-between;
   font-size: 0.8em;
   color: #000;
   padding: 0 1rem;
 }
 
-.blog-descrption p {
-  font-size: 0.8rem;
-  color: hsl(0, 0%, 46%);
-}
+
 
 .loaderOverlay {
-  position: absolute;
+  position: fixed;
   justify-content: center;
   margin: auto;
   align-items: center;
