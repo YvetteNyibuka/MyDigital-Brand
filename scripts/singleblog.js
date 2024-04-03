@@ -76,19 +76,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   // fetching all blog posts
   var allBlogs = [];
   async function fetchBlogs() {
-    const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
-    if (!loggedUser || !loggedUser.token) {
-      console.error("Invalid or missing token");
-      return;
-    }
-    const token = loggedUser.token;
-
     try {
       const response = await fetch("https://mybrand-be-rs6b.onrender.com/api/v1/blogs", {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        }
+        method: "GET"
       });
 
       if (!response.ok) {
@@ -137,14 +127,15 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   const commentBtn = document.getElementById("commentBtn");
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
-  const token = loggedUser.token;
+  const token = loggedUser?.token;
 
   commentBtn.addEventListener("click", async () => {
   const Message = document.getElementById("message").value;
   
   if (!loggedUser || !loggedUser.token) {
       console.error("Invalid or missing token");
-      return; 
+      window.location.href = "../pages/login.html";
+      return;
   }
 
   const newComment = 
@@ -203,7 +194,7 @@ commentsNumber.innerHTML = `${allComments.length} Comments`;
    }
 
    const loggedUser1 = JSON.parse(localStorage.getItem("loggedUser"));
-   const token1 = loggedUser.token;
+   const token1 = loggedUser?.token;
    let  userId = loggedUser?.user?.id;
 
    async function addLike(userid, blogid) {
@@ -235,6 +226,7 @@ commentsNumber.innerHTML = `${allComments.length} Comments`;
        console.error("Error adding like:", e);
     }
    }
+
    additions.innerHTML =` <p>
    <button style="background-color: white; border: none" class="like-button" data-blog-id="${currentblog?.singleBlog?._id}" data-user-id="${userId}">
    ${currentblog?.singleBloglikes?.some(like => like.userId === userId) ? 

@@ -16,7 +16,17 @@ document.addEventListener("DOMContentLoaded", function () {
   let newBlogBtn = document.getElementById("newBlogBtn");
   let newBlogSection = document.getElementById("new-blog-section");
   let updateBlogSection = document.getElementById("update-blog-section");
+  const loader = document.querySelector(".loaderOverlay");
 
+  function showLoader() {
+    loader.style.display = "flex";
+  }
+
+  function hideLoader() {
+    loader.style.display = "none";
+  }
+
+  
   newBlogBtn.addEventListener("click", () => {
     newBlogSection.innerHTML = "";
     fetch("../pages/newBlog.html")

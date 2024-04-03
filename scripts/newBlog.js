@@ -4,6 +4,15 @@ async function addBlog() {
   const blogTitle = document.getElementById("blogTitle").value;
   const coverPhoto = document.getElementById("coverPhoto");
   const image = coverPhoto.files[0];
+  const loader = document.querySelector(".loaderOverlay");
+
+  function showLoader() {
+    loader.style.display = "flex";
+  }
+
+  function hideLoader() {
+    loader.style.display = "none";
+  }
 
   if (!image) {
       console.error("No cover image selected");
@@ -31,6 +40,7 @@ async function addBlog() {
   formData.append("coverImage", image);
 
   try {
+    showLoader();
       const newBlog = await fetch("https://mybrand-be-rs6b.onrender.com/api/v1/blogs", {
           method: "POST",
           headers: {
@@ -71,6 +81,7 @@ async function addBlog() {
         }).showToast();
         }
       } else{
+      hideLoader();
       Toastify({
           text: "Blog created successfully",
           duration: 3000,
@@ -83,7 +94,6 @@ async function addBlog() {
           backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
           onClick: function(){} 
       }).showToast();
-      window.location.href = "../index.html";
       document.getElementById("blogcategory").value = "";
       document.getElementById("author").value = "";
       document.getElementById("blogTitle").value = "";
@@ -93,7 +103,7 @@ async function addBlog() {
     }
   } catch (error) {
       console.error("Error creating blog:", error);
-
+      hideLoader();
       Toastify({
           text: "Error creating blog",
           duration: 3000,
