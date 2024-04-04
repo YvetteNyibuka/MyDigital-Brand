@@ -915,9 +915,8 @@ logInOut.addEventListener('click', function(event) {
       if (!response.ok) {
         throw new Error("Failed to fetch blogs");
       }
-
       const data = await response.json();
-      // console.log("Got blog data", data);
+      console.log("Got blog data", data?.data);
       renderBlogs(data);
       hideLoader();
     } catch (error) {
@@ -946,15 +945,16 @@ async function renderBlogs(blogs) {
   blogCardContainer.innerHTML = ""; 
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
   const userId = loggedUser?.user?.id;
-
-   blogs?.data?.forEach(blog => {
+   blogs?.data?.reverse().forEach(blog => {
+ console.log("description", blog?.description);
     blogCardContainer.innerHTML += `
       <div class="blog-card">
         <div class="blog-img">
           <img src="${blog?.coverImage}" alt="">
         </div>
         <div class="blog-description">
-          <p>${blog?.description?.slice(0, 100)}... <a href="./pages/singleblog.html?id=${blog?._id}">Learn More</a></p>
+          <div class="title-div">${blog?.title}</div>
+          <a href="./pages/singleblog.html?id=${blog?._id}">Learn More</a>
         </div>
         <div class="blog-info">
           <p>${blog?.author ? blog?.author : 'Yvette'}</p>

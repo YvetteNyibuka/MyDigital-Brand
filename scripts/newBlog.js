@@ -2,6 +2,7 @@ async function addBlog() {
   const blogcategory = document.getElementById("blogcategory").value;
   const author = document.getElementById("author").value;
   const blogTitle = document.getElementById("blogTitle").value;
+  const description = tinymce.get("blogContent").getContent();
   const coverPhoto = document.getElementById("coverPhoto");
   const image = coverPhoto.files[0];
   const loader = document.querySelector(".loaderOverlay");
@@ -19,11 +20,10 @@ async function addBlog() {
       return; 
   }
 
-  const blogContentHTML = tinymce.get("blogContent").getContent();
 
-  const tempElement = document.createElement("div");
-  tempElement.innerHTML = blogContentHTML;
-  const blogContentText = tempElement.textContent || tempElement.innerText;
+  // const tempElement = document.createElement("div");
+  // tempElement.innerHTML = blogContentHTML;
+  // const blogContentText = tempElement.textContent || tempElement.innerText;
 
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
   if (!loggedUser || !loggedUser.token) {
@@ -36,7 +36,7 @@ async function addBlog() {
   formData.append("category", blogcategory);
   formData.append("author", author);
   formData.append("title", blogTitle);
-  formData.append("description", blogContentText);
+  formData.append("description", description);
   formData.append("coverImage", image);
 
   try {
@@ -97,7 +97,7 @@ async function addBlog() {
       document.getElementById("blogcategory").value = "";
       document.getElementById("author").value = "";
       document.getElementById("blogTitle").value = "";
-      tinymce.get("blogContent").setContent("");
+      document.getElementById("description").value = "";
       coverPhoto.value = ""; 
 
     }
