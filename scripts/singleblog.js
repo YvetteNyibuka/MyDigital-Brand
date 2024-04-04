@@ -131,12 +131,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   commentBtn.addEventListener("click", async () => {
   const Message = document.getElementById("message").value;
-  
-  if (!loggedUser || !loggedUser.token) {
-      console.error("Invalid or missing token");
-      window.location.href = "../pages/login.html";
-      return;
-  }
 
   const newComment = 
     {
@@ -153,8 +147,39 @@ try{
           body: JSON.stringify(newComment),
       });
       const blogComments = await commentResponse.json();
-      if(commentResponse.ok){
-        console.log("comentscreated successfully", blogComments);
+      console.log("comments", blogComments);
+      if (!commentResponse.ok) {
+        if (!loggedUser|| !loggedUser?.token || commentResponse.status == 403) {
+          Toastify({
+            text: "You have to log in first",
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", 
+            position: "left", 
+            stopOnFocus: true, 
+            backgroundColor: "red",
+            onClick: function(){} 
+        }).showToast();
+        setTimeout(()=>{
+          window.location.href = "../pages/login.html";
+        }, 3000 )
+       } else if (commentResponse.status == 500) {
+          Toastify({
+            text: `${blogComments?.message}`,
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", 
+            position: "left", 
+            stopOnFocus: true, 
+            backgroundColor: "red",
+            onClick: function(){} 
+        }).showToast();
+      }
+       } else{
         Toastify({
           text: `${blogComments?.message}`,
           duration: 3000,
@@ -167,13 +192,24 @@ try{
           backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
           onClick: function(){} 
       }).showToast();
-        setTimeout(() => {
-               window.location.reload();
-        }, 3000); 
-      }
+      setTimeout(()=>{
+        window.location.reload();
+      },3000)
+    }
 
 }catch(e){
-console.log(e);
+  Toastify({
+    text: `${e}`,
+    duration: 3000,
+    destination: "https://github.com/apvarun/toastify-js",
+    newWindow: true,
+    close: true,
+    gravity: "top", 
+    position: "left", 
+    stopOnFocus: true, 
+    backgroundColor: "red",
+    onClick: function(){} 
+}).showToast();
 }
 
   });
@@ -198,33 +234,90 @@ commentsNumber.innerHTML = `${allComments.length} Comments`;
    let  userId = loggedUser?.user?.id;
 
    async function addLike(userid, blogid) {
-    if (!loggedUser1 || !loggedUser1.token) {
-       console.error("Invalid or missing token");
-       window.location.href = "../pages/login.html";
-    }
     const newLike = {
        blogId: blogid,
        userId: userid,
        isLiked: true
     };
     try {
-       const likeResponse = await fetch(`https://mybrand-be-rs6b.onrender.com/api/v1/blogs/${blogId}/likes`, {
-         method: 'POST',
-         headers: {
-           "Authorization": `Bearer ${token1}`,
-           'Content-Type': 'application/json'
-         },
-         body: JSON.stringify(newLike)
-       });
-       
-       if (!likeResponse.ok) {
-         throw new Error("Failed to add like to blogs");
-       }
-       console.log("Like added successfully");
-       window.location.reload();
+      const likeResponse = await fetch(`https://mybrand-be-rs6b.onrender.com/api/v1/blogs/${blogId}/likes`, {
+        method: 'POST',
+        headers: {
+          "Authorization": `Bearer ${token1}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newLike)
+      });
+      
+      console.log("like response", likeResponse.status);
+      const likes = await likeResponse.json();
+      console.log("liked", likes);
+    
+      if (!likeResponse.ok) {
+        if (!loggedUser1 || !loggedUser1?.token || likeResponse.status == 403) {
+          Toastify({
+            text: `${likes?.message}`,
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", 
+            position: "left", 
+            stopOnFocus: true, 
+            backgroundImage: "linear-gradient(to right, #00b09b, #96c93d)", // Change backgroundColor to backgroundImage
+            onClick: function(){} 
+          }).showToast();
+          setTimeout(() => {
+            window.location.href = "../pages/login.html";
+          }, 3000);
+        } else if (likeResponse.status == 500) {
+          Toastify({
+            text: `${likes?.message}`,
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", 
+            position: "left", 
+            stopOnFocus: true, 
+            backgroundColor: "red",
+            onClick: function(){} 
+          }).showToast();
+        } else {
+          Toastify({
+            text: `${likeResponse?.message}`,
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", 
+            position: "left", 
+            stopOnFocus: true, 
+            backgroundImage: "linear-gradient(to right, #00b09b, #96c93d)", // Change backgroundColor to backgroundImage
+            onClick: function(){} 
+          }).showToast();
+        }
+      }
+      
+      // Reload window after liking process
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     } catch (e) {
-       console.error("Error adding like:", e);
+      Toastify({
+        text: `${e}`,
+        duration: 3000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top", 
+        position: "left", 
+        stopOnFocus: true, 
+        backgroundColor: "red",
+        onClick: function(){} 
+      }).showToast();
     }
+    
    }
 
    additions.innerHTML =` <p>
@@ -244,14 +337,5 @@ commentsNumber.innerHTML = `${allComments.length} Comments`;
          addLike(userId, blogId);
       }
      });
-
-  const replyButtons = document.querySelectorAll(".reply-btn");
-  replyButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      const commentContainer = this.closest(".createdcomment");
-      const replySection = commentContainer.querySelector(".reply-section");
-      replySection.classList.toggle("show-reply-section");
-    });
-  });
  
 });

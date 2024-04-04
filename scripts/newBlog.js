@@ -21,10 +21,6 @@ async function addBlog() {
   }
 
 
-  // const tempElement = document.createElement("div");
-  // tempElement.innerHTML = blogContentHTML;
-  // const blogContentText = tempElement.textContent || tempElement.innerText;
-
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
   if (!loggedUser || !loggedUser.token) {
       console.error("Invalid or missing token");
@@ -52,6 +48,7 @@ async function addBlog() {
       console.log("Created new blog", returnedBlog);
 
       if(!newBlog.ok){
+        hideLoader();
         if (newBlog.status == 400) {
           Toastify({
             text: `${returnedBlog.message}`,
@@ -97,15 +94,14 @@ async function addBlog() {
       document.getElementById("blogcategory").value = "";
       document.getElementById("author").value = "";
       document.getElementById("blogTitle").value = "";
-      document.getElementById("description").value = "";
+      tinymce.get("blogContent").getContent() = "";      
       coverPhoto.value = ""; 
 
     }
   } catch (error) {
-      console.error("Error creating blog:", error);
       hideLoader();
       Toastify({
-          text: "Error creating blog",
+          text: `${error}`,
           duration: 3000,
           destination: "https://github.com/apvarun/toastify-js",
           newWindow: true,

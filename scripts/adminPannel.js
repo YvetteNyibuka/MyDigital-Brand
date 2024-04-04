@@ -206,7 +206,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  document.addEventListener("submit", function (event) {
+
+  document.addEventListener("submit", async function (event) {
       if (event.target.id === "blogForm1") {
           event.preventDefault();
           
@@ -225,8 +226,9 @@ document.addEventListener("DOMContentLoaded", function () {
               return; 
           }
           const token = loggedUser.token;
-
-          fetch(`https://mybrand-be-rs6b.onrender.com/api/v1/blogs/${blogId}`, {
+          try{
+            showLoader();
+   const response = await fetch(`https://mybrand-be-rs6b.onrender.com/api/v1/blogs/${blogId}`, {
               method: "PATCH",
               headers: {
                   "Content-Type": "application/json",
@@ -234,18 +236,59 @@ document.addEventListener("DOMContentLoaded", function () {
               },
               body: JSON.stringify(jsonFormData)
           })
-          .then(response => {
-              if (!response.ok) {
-                  throw new Error("Failed to update blog");
-              }
-              return response.json();
-          })
-          .then(data => {
-              console.log("Blog updated successfully:", data);
-          })
-          .catch(error => {
-              console.error("Error updating blog:", error);
-          });
+      const updatedBlog = await response.json();
+      console.log("updatedBlog: ", updatedBlog);
+          if(!response.ok){
+            hideLoader();
+            if (response.status == 400||response.status == 500) {
+              Toastify({
+                text: `${updatedBlog?.message}`,
+                duration: 3000,
+                destination: "https://github.com/apvarun/toastify-js",
+                newWindow: true,
+                close: true,
+                gravity: "top", 
+                position: "left", 
+                stopOnFocus: true, 
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                onClick: function(){} 
+            }).showToast();
+          }
+        }else{
+          hideLoader(); 
+          Toastify({
+            text: `${updatedBlog?.message}`,
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", 
+            position: "left", 
+            stopOnFocus: true, 
+            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+            onClick: function(){} 
+        }).showToast();
+        updateForm.setAttribute("blogId","");
+        updateForm.elements["category"].value = "";
+        updateForm.elements["author"].value = "";
+        updateForm.elements["title"].value = "";
+        updateForm.elements["blogContent"].value = "";
       }
-  });
+        } catch(e){
+          hideLoader();
+          Toastify({
+            text: `${e}`,
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", 
+            position: "left", 
+            stopOnFocus: true, 
+            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+            onClick: function(){} 
+        }).showToast();
+
+        }
+}});
 });
