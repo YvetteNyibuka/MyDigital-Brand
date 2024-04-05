@@ -264,12 +264,12 @@ commentsNumber.innerHTML = `${allComments.length} Comments`;
             gravity: "top", 
             position: "left", 
             stopOnFocus: true, 
-            backgroundImage: "linear-gradient(to right, #00b09b, #96c93d)", // Change backgroundColor to backgroundImage
+            backgroundImage: "linear-gradient(to right, #00b09b, #96c93d)", 
             onClick: function(){} 
           }).showToast();
-          setTimeout(() => {
-            window.location.href = "../pages/login.html";
-          }, 3000);
+            setTimeout(()=>{
+          window.location.href = "../pages/login.html";
+        }, 3000 )
         } else if (likeResponse.status == 500) {
           Toastify({
             text: `${likes?.message}`,
@@ -296,13 +296,14 @@ commentsNumber.innerHTML = `${allComments.length} Comments`;
             backgroundImage: "linear-gradient(to right, #00b09b, #96c93d)", // Change backgroundColor to backgroundImage
             onClick: function(){} 
           }).showToast();
-        }
-      }
-      
-      // Reload window after liking process
+                // Reload window after liking process
       setTimeout(() => {
         window.location.reload();
       }, 3000);
+        }
+      }
+      
+
     } catch (e) {
       Toastify({
         text: `${e}`,
