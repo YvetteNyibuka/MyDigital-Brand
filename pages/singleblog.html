@@ -24,6 +24,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <link rel="stylesheet" href="../styles/singleblog.css" />
   </head>
   <body>
@@ -33,7 +36,7 @@
   </div>
   <div class="singlecontainer">
     <div class="blogdetails1" id="blogdetails1"></div>
-    <div class="additions">
+    <div class="additions" id="additions">
     </div>
     <div class="commentsection">
       <h1 id="commentsNumber"></h1>
@@ -69,7 +72,11 @@
   </div>
 
 </div>
-  <script src="../scripts/singleblog.js"></script>
+  <!-- <script src="../scripts/singleblog.js"></script> -->
+  <script src="../reactJs/SingleBlogPage.js" type="text/babel"></script>
+  <script src="../reactJs/OtherBlogs.js" type="text/babel"></script>
+  <script src="../reactJs/AddComments.js" type="text/babel"></script>
+  <script src="../reactJs/AddLike.js" type="text/babel"></script>
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   </body>
 </html>

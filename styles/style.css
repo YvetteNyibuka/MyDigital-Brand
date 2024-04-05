@@ -215,6 +215,9 @@ progress::-moz-progress-bar {
 #navlink {
   color: black;
 }
+.log-in-out{
+  color: black;
+}
 #menu {
   color: black;
 }
@@ -275,6 +278,9 @@ progress::-moz-progress-bar {
   #navlink {
     font-size: 1.5rem;
   }
+  .log-in-out{
+    font-size: 1.5rem;
+  }
   #menu {
     font-size: 1.5rem;
   }
@@ -297,6 +303,9 @@ progress::-moz-progress-bar {
     font-size: 3rem;
   }
   #navlink {
+    font-size: 2rem;
+  }
+  .log-in-out{
     font-size: 2rem;
   }
   #menu {
