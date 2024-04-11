@@ -1,15 +1,15 @@
-document.addEventListener("DOMContentLoaded", async function () {
-  let singlblogData = document.getElementById("blogdetails1");
-  const loader = document.querySelector(".loaderOverlay");
-  const additions = document.querySelector(".additions")
+// document.addEventListener("DOMContentLoaded", async function () {
+//   let singlblogData = document.getElementById("blogdetails1");
+//   const loader = document.querySelector(".loaderOverlay");
+//   const additions = document.querySelector(".additions")
 
-  function showLoader() {
-    loader.style.display = "flex";
-  }
+//   function showLoader() {
+//     loader.style.display = "flex";
+//   }
 
-  function hideLoader() {
-    loader.style.display = "none";
-  }
+//   function hideLoader() {
+//     loader.style.display = "none";
+  // }
 
   // await readIdFromUrl();
   //  var currentblog;
@@ -338,4 +338,4 @@ document.addEventListener("DOMContentLoaded", async function () {
   //     }
   //    });
  
-});
+// });

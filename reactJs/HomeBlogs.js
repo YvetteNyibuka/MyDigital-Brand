@@ -1,9 +1,6 @@
 const HomeBlogs = () => {
   const { useState, useEffect } = React;
   const loader = document.querySelector(".loaderOverlay");
-
-
- 
   const [blogs, setBlogs] = useState([]);
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
   const userId = loggedUser?.user?.id;

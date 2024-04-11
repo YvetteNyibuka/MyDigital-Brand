@@ -49,6 +49,7 @@ const AddLike = () => {
                 console.log("like response", likeResponse.status);
                 const likes = await likeResponse.json();
                 console.log("liked", likes);
+                console.log("like response", likeResponse.ok);
 
                 if (!likeResponse.ok) {
                     if (!loggedUser1 || !loggedUser1?.token || likeResponse.status == 403) {
@@ -61,13 +62,14 @@ const AddLike = () => {
                             gravity: "top",
                             position: "left",
                             stopOnFocus: true,
-                            backgroundImage: "linear-gradient(to right, #00b09b, #96c93d)", // Change backgroundColor to backgroundImage
+                            backgroundColor: "red", 
                             onClick: function () {}
                         }).showToast();
                         setTimeout(() => {
                             window.location.href = "../pages/login.html";
                         }, 3000);
-                    } else if (likeResponse.status == 500) {
+                    } 
+                    else if(likeResponse.status == 500){
                         Toastify({
                             text: `${likes?.message}`,
                             duration: 3000,
@@ -80,27 +82,17 @@ const AddLike = () => {
                             backgroundColor: "red",
                             onClick: function () {}
                         }).showToast();
-                    } else {
-                        Toastify({
-                            text: `${likeResponse?.message}`,
-                            duration: 3000,
-                            destination: "https://github.com/apvarun/toastify-js",
-                            newWindow: true,
-                            close: true,
-                            gravity: "top",
-                            position: "left",
-                            stopOnFocus: true,
-                            backgroundImage: "linear-gradient(to right, #00b09b, #96c93d)", // Change backgroundColor to backgroundImage
-                            onClick: function () {}
-                        }).showToast();
                     }
-                }
+                    } 
+                else {
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 3000);
+                    }
 
-                setTimeout(() => {
-                    window.location.reload();
-                }, 3000);
+
             } catch (e) {
-                Toastify({
+                  Toastify({
                     text: `${e}`,
                     duration: 3000,
                     destination: "https://github.com/apvarun/toastify-js",
