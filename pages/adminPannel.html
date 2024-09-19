@@ -9,6 +9,7 @@
           initial-scale=1.0"
     />
     <title>Yvette-Blogs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
        <script
       src="https://cdn.tiny.cloud/1/4qilgajirjr3knm3wxy1rqupf2d4aug2h8vu0qylf9f4bv1l/tinymce/5/tinymce.min.js"
       referrerpolicy="origin"
@@ -43,9 +44,12 @@
   </head>
 
   <body>
+    <div class="loaderOverlay">
+      <div class="loader"></div>
+    </div>
     <header>
       <div class="logosec">
-        <div class="logo">Yvette</div>
+        <div class="logo"><a href="../index.html" style="text-decoration: none; color: #ffb400;">Yvette</a></div>
         <i class="fa-solid fa-bars icon icn-menuicn" id="menuicn"></i>
       </div>
 
@@ -243,130 +247,17 @@
               <tr style="border-radius: 1rem;">
                 <th>#</th>
 
-                <th>FirstName</th>
-
-                <th>LastName</th>
-
-                <th>Age</th>
+                <th>Names</th>
 
                 <th>Email</th>
 
+                <th>Role</th>
                 <th>Actions</th>
               </tr>
 
-              <tr>
-                <td>1</td>
+              <tbody id="userRow">
 
-                <td>Jean</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-
-                <td>18 Nov 1962</td>
-
-                <td>
-                  <i class="fa-solid fa-trash-can"></i>
-                </td>
-              </tr>
-
-              <tr>
-                <td>2</td>
-
-                <td>jack</td>
-
-                <td>Duppont</td>
-
-                <td>1368</td>
-
-                <td>18 Dec 1962</td>
-
-                <td> <i class="fa-solid fa-trash-can"></i></td>
-              </tr>
-
-              <tr>
-                <td>3</td>
-
-                <td>Jean</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-
-                <td>18 Nov 1972</td>
-
-                <td> <i class="fa-solid fa-trash-can"></i></td>
-              </tr>
-
-              <tr>
-                <td>4</td>
-
-                <td>Nadia</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-
-                <td>18 Mar 1982</td>
-
-                <td> <i class="fa-solid fa-trash-can"></i></td>
-              </tr>
-
-              <tr>
-                <td>5</td>
-
-                <td>Nadia</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-
-                <td>18 Mar 1982</td>
-
-                <td> <i class="fa-solid fa-trash-can"></i></td>
-              </tr>
-
-              <tr>
-                <td>6</td>
-
-                <td>Nadia</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-
-                <td>18 Mar 1982</td>
-
-                <td> <i class="fa-solid fa-trash-can"></i></td>
-              </tr>
-
-              <tr>
-                <td>7</td>
-
-                <td>Nadia</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-
-                <td>18 Mar 1982</td>
-
-                <td> <i class="fa-solid fa-trash-can"></i></td>
-              </tr>
-
-              <tr>
-                <td>8</td>
-
-                <td>Nadia</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-
-                <td>18 Mar 1982</td>
-
-                <td> <i class="fa-solid fa-trash-can"></i></td>
-              </tr>
+              </tbody>
             </table>
           </div>
 
@@ -382,150 +273,24 @@
               <tr>
                 <th>#</th>
 
-                <th>Category</th>
-
-                <th>Image</th>
-
-                <th>Publish Date</th>
+                <th>Author</th>
 
                 <th>Title</th>
 
+                <th>Likes</th>
+
+                <th>Comments</th>
+
                 <th>Actions</th>
               </tr>
-
-              <tr>
-                <td>1</td>
-
-                <td>Jean</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-
-                <td>18 Nov 1962</td>
-
-                <td>
-                  <i class="fa-solid fa-trash-can"></i>
-                  <i class="fa-regular fa-pen-to-square"></i>
-                </td>
-              </tr>
-
-              <tr>
-                <td>2</td>
-
-                <td>jack</td>
-
-                <td>Duppont</td>
-
-                <td>1368</td>
-
-                <td>18 Dec 1962</td>
-
-                <td>                  
-                    <i class="fa-solid fa-trash-can"></i>
-                  <i class="fa-regular fa-pen-to-square"></i></td>
-              </tr>
-
-              <tr>
-                <td>3</td>
-
-                <td>Jean</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-
-                <td>18 Nov 1972</td>
-
-                <td>
-                  <i class="fa-solid fa-trash-can"></i>
-                  <i class="fa-regular fa-pen-to-square"></i>
-                </td>
-              </tr>
-
-              <tr>
-                <td>4</td>
-
-                <td>Nadia</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-
-                <td>18 Mar 1982</td>
-
-                <td>
-                  <i class="fa-solid fa-trash-can"></i>
-                  <i class="fa-regular fa-pen-to-square"></i>
-                </td>
-              </tr>
-
-              <tr>
-                <td>5</td>
-
-                <td>Nadia</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-
-                <td>18 Mar 1982</td>
-
-                <td>
-                                      <i class="fa-solid fa-trash-can"></i>
-                  <i class="fa-regular fa-pen-to-square"></i>
-                </td>
-              </tr>
-
-              <tr>
-                <td>6</td>
-
-                <td>Nadia</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-
-                <td>18 Mar 1982</td>
-
-                <td>
-                                      <i class="fa-solid fa-trash-can"></i>
-                  <i class="fa-regular fa-pen-to-square"></i>
-                </td>
-              </tr>
-
-              <tr>
-                <td>7</td>
-
-                <td>Nadia</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-
-                <td>18 Mar 1982</td>
-
-                <td>                  <i class="fa-solid fa-trash-can"></i>
-                  <i class="fa-regular fa-pen-to-square"></i></td>
-              </tr>
-
-              <tr>
-                <td>8</td>
-
-                <td>Nadia</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-
-                <td>18 Mar 1982</td>
-
-                <td>                  <i class="fa-solid fa-trash-can"></i>
-                  <i class="fa-regular fa-pen-to-square"></i></td>
-              </tr>
+        <tbody  id="blogRow">
+ 
+       </tbody>
             </table>
           </div>
           <div id="new-blog-section" class="main-section">
+          </div>
+          <div id="update-blog-section" class="main-section">
           </div>
 
 
@@ -538,106 +303,14 @@
             <table>
               <tr>
                 <th>#</th>
-
-                <th>Names</th>
-
+                <th>fullNames</th>
                 <th>Message</th>
-
-                <th>Date</th>
                 <th>Actions</th>
               </tr>
 
-              <tr>
-                <td>1</td>
-
-                <td>Jean</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-             <td id="actions2">
-                <i class="fa-solid fa-reply"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-
-                <td>Jean</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-             <td id="actions2">
-                <i class="fa-solid fa-reply"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-
-                <td>Jean</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-             <td id="actions2">
-                <i class="fa-solid fa-reply"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-
-                <td>Jean</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-             <td id="actions2">
-                <i class="fa-solid fa-reply"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </td>
-              </tr>
-              <tr>
-                <td>5</td>
-
-                <td>Jean</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-             <td id="actions2">
-                <i class="fa-solid fa-reply"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </td>
-              </tr>
-              <tr>
-                <td>6</td>
-
-                <td>Jean</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-             <td id="actions2">
-                <i class="fa-solid fa-reply"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </td>
-              </tr>
-              <tr>
-                <td>7</td>
-
-                <td>Jean</td>
-
-                <td>leBon</td>
-
-                <td>1368</td>
-             <td id="actions2">
-                <i class="fa-solid fa-reply"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </td>
-              </tr>
+             <tbody id="message-wrapper">
+              
+             </tbody>
             </table>
           </div>
            <div id="profile-section" class="main-section">
@@ -678,9 +351,6 @@
       </div>
     </div>
           </div>
-          <div id="logout-section" class="main-section">
-            <h1>Logout Content</h1>
-          </div>
               </div>
             </div>
           </div>
@@ -688,14 +358,10 @@
         </div>
       </div>
     </div>
-        <!-- <script>
-      function newBlog() {
-        alert("button clickd");
-      }
-    </script> -->
     <script src="../scripts/newBlog.js"></script>
-
     <script src="../scripts/adminPannel.js"></script>
-
+    <script src="../scripts/querries.js"></script>
+    <script src="../scripts/users.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   </body>
 </html>

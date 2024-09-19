@@ -3,12 +3,20 @@ document.addEventListener("DOMContentLoaded", function () {
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
   const submitBtn = document.getElementById("loginBtn");
+  const loader = document.querySelector(".loaderOverlay");
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
+  function showLoader() {
+    loader.style.display = "flex";
+  }
+
+  function hideLoader() {
+    loader.style.display = "none";
+  }
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault(); 
+
     let isValid = true;
-
-    // Validate email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(emailInput.value)) {
       isValid = false;
@@ -17,25 +25,73 @@ document.addEventListener("DOMContentLoaded", function () {
       hideError(emailInput);
     }
 
-    // Validate password
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(passwordInput.value)) {
-      isValid = false;
-      showError(
-        passwordInput,
-        "Password should be 8 characters with uppercase, lowercase, numbers, and special characters."
-      );
-    } else {
-      hideError(passwordInput);
-    }
-
-    // Enable or disable the submit button based on validation
     submitBtn.disabled = !isValid;
-
-    // Prevent form submission if not valid
     if (!isValid) {
-      event.preventDefault();
+      return;
+    }
+    const loginData = {
+      email: emailInput.value,
+      password: passwordInput.value
+    };
+
+    try {
+      showLoader();
+      const response = await fetch(
+        "https://mybrand-be-rs6b.onrender.com/api/v1/users/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginData),
+        }
+      );
+
+      if (!response.ok) {
+        const returnData = await response.json();
+        if (response.status == 400 || response.status == 500) {
+          Toastify({
+            text: `${returnData.message}`,
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            position: "left",
+            stopOnFocus: true,
+            backgroundColor: "red",
+            onClick: function () { }
+          }).showToast();
+        }
+      } else {
+        const returnData = await response.json();
+         Toastify({
+          text: `${returnData.message}`,
+          duration: 3000,
+          destination: "https://github.com/apvarun/toastify-js",
+          newWindow: true,
+          close: true,
+          gravity: "top",
+          position: "left",
+          stopOnFocus: true,
+          backgroundColor: "green",
+          onClick: function () { }
+        }).showToast();
+
+        localStorage.setItem("loggedUser", JSON.stringify(returnData));
+        setTimeout(() => {
+          if (returnData.user.role == "admin") {
+            window.location.href = "../pages/adminPannel.html";
+          } else {
+            window.location.href = "../index.html";
+          }
+        }, 3000); 
+      }
+
+      hideLoader();
+    } catch (err) {
+      console.log("Error: ", err);
+      hideLoader();
     }
   });
 

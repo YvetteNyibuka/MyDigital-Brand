@@ -18,13 +18,17 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   </head>
   <body>
-    <div class="home">
-      <a id="backhome" href="../index.html"><h1>Yvette</h1></a>
-    </div>
     <div class="loginbox">
-      <div class="logincont">
+      <div class="home">
+        <a id="backhome" href="../index.html"><h1>Yvette</h1></a>
+      </div>
+      <div class="loaderOverlay">
+        <div class="loader"></div>
+      </div>
+      <div class="logincontt">
         <div class="login-image">
           <img src="../images/loginimage.png" alt="" />
         </div>
@@ -37,6 +41,7 @@
               <input
                 type="text"
                 id="email"
+                name="email"
                 placeholder="Enter your email address"
               />
             </div>
@@ -45,13 +50,14 @@
               <input
                 type="password"
                 id="password"
+                name="password"
                 placeholder="Enter your password"
               />
             </div>
 
             <div class="form-group submit-btn">
               <button type="submit" value="Submit" id="loginBtn">
-                <a href="../pages/adminPannel.html"> Submit </a>
+                 Submit
               </button>
             </div>
             <p id="alternate">
@@ -62,5 +68,6 @@
       </div>
     </div>
     <script src="../scripts/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   </body>
 </html>

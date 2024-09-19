@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Blog</title>
+  <link rel="stylesheet" href="../styles/newBlog.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+  <div class="loaderOverlay">
+    <div class="loader"></div>
+  </div>
+  <p id="successMessage"></p>
+  <div class="new-blog-container">
+    <div class="container">
+      <form id="blogForm1" >
+        <div class="leftinfoo">
+          <label for="blogCategory">Blog Category:</label>
+          <input type="text" id="blogCategory" name="category" />
+          <label for="blogAuthor">Blog Author:</label>
+          <input type="text" id="blogAuthor" name="author" />
+          <label for="blogTitle">Blog Title:</label>
+          <input type="text" id="blogTitle" name="title" />
+          <label for="coverPhoto">Blog Cover photo</label>
+          <input type="file" id="coverPhoto" name="coverImage" />
+        </div>
+        <div class="richeditor">
+          <label for="blogContent">Blog Description:</label>
+          <textarea id="blogContent" name="description"></textarea>
+          <button type="submit" id="updateBtn">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker markdown',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="https://cdn.tiny.cloud/1/your-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+ 
+</body>
+</html>

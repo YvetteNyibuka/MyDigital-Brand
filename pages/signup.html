@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<!-- Website - www.codingnepalweb.com -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Form Validation in HTML | CodingNepal</title>
+    <title>Register</title>
     <link rel="stylesheet" href="../styles/signup.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -19,12 +18,17 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   </head>
   <body>
     <div class="home">
       <a id="backhome" href="../index.html"><h1>Yvette</h1></a>
     </div>
     <div class="signupbox">
+      <div class="loaderOverlay">
+        <div class="loader"></div>
+      </div>
+      <!-- <p id="successMessage"></p> -->
       <div class="signupcont">
         <div class="signupimg">
           <img src="../images/signup-image.png" alt="" />
@@ -37,6 +41,7 @@
               <input
                 type="text"
                 id="fullname"
+                name="names"
                 placeholder="Enter your full name"
               />
             </div>
@@ -44,6 +49,7 @@
               <label for="email">Email Address</label>
               <input
                 type="text"
+                name="email"
                 id="email"
                 placeholder="Enter your email address"
               />
@@ -53,6 +59,7 @@
               <input
                 type="password"
                 id="password"
+                name="password"
                 placeholder="Enter your password"
               />
             </div>
@@ -64,7 +71,7 @@
         </div>
       </div>
     </div>
-
     <script src="../scripts/signup.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   </body>
 </html>
